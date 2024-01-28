@@ -1,0 +1,7 @@
+terragrunt 0.40.0
+terraform 1.3.4
+terraform-docs 0.16.0
+pre-commit 2.20.0
+awscli 2.9.13
+flux2 0.41.2
+kubectl 1.26.0
