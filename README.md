@@ -8,6 +8,13 @@ Ultimately, my goal isn't necessarily to master every aspect of Kubernetes. Inst
 
 This practical approach guides my efforts, prioritizing operational effectiveness over exhaustive comprehension.
 
+#### Kubernetes Architecture
+
+- Master nodes for control plane operations
+- Worker nodes for executing application workloads
+
+
+
 #### I have broken down this repo into 4 subfolders folders
 
 ##### EKS Platform
