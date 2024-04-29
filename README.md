@@ -1,4 +1,4 @@
-### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications.
+### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications [This is a living document and still a WIP].
 
 This repo will focus on how DevOps teams can collaborate on  
 
