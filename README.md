@@ -1,4 +1,9 @@
-### This repository documents my Kubernetes journey, emphasizing general architecture concepts and my specific experiences with EKS and AKS.
+### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications.
+
+I will demonstrate my k8s understanding seperating 
+
+- Infrastructure components - deployment, management and monitoring
+- Application components - deployment, management and monitoring
 
 #### What inspired this repo 
 
