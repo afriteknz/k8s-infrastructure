@@ -1,14 +1,14 @@
 ### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications [This is a living document and still a WIP].
 
-For both EKS and AKS, you need 2 things:
+In summary, for kubenetes solutions you need 2 things:
 
     - A cluster 
     - A way to deploy workloads into the cluster
 
 This repo will focus on how DevOps teams can achieve   
 
-- Infrastructure CI/CD - deployment, management and monitoring
-- Application CI/CD - deployment, management and monitoring
+    - Infrastructure CI/CD - deployment, management and monitoring
+    - Application CI/CD - deployment, management and monitoring
 
 
 #### What inspired this repo 
