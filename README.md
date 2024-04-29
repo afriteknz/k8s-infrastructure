@@ -1,10 +1,14 @@
 ### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications [This is a living document and still a WIP].
 
-This repo will focus on how DevOps teams can collaborate on  
+For both EKS and AKS, you need 2 things:
+
+    - A cluster 
+    - A way to deploy workloads into the cluster
+
+This repo will focus on how DevOps teams can achieve   
 
 - Infrastructure CI/CD - deployment, management and monitoring
 - Application CI/CD - deployment, management and monitoring
-
 
 
 #### What inspired this repo 
@@ -17,7 +21,7 @@ This practical approach guides my efforts, prioritizing operational effectivenes
 
 #### Docker & Kubernetes - Understanding the relationship
 
-
+CI/CD *** update this 
 
 ##### What is Docker and how does it work?
 
@@ -28,10 +32,8 @@ The diagram below shows the architecture of Docker and how it works when we run 
  
 There are 3 components in Docker architecture: 
  
-🔹 Docker client - the docker client talks to the Docker daemon. 
- 
-🔹 Docker host - the Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. 
- 
+🔹 Docker client - the docker client talks to the Docker daemon.  
+🔹 Docker host - the Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes.  
 🔹 Docker registry - A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use. 
  
 Let’s take the “docker run” command as an example. 
@@ -50,19 +52,14 @@ Docker is a platform that enables developers to build, ship, and run application
 - Docker Daemon: The background process that manages containers, images, networks, and volumes.
 - Docker CLI: The command-line interface used to interact with Docker Daemon.
 - Images: Read-only templates that contain the application code, runtime, libraries, dependencies, and other files required for the application to run.
-
 - Containers: Runnable instances of Docker images. Containers isolate the application and its dependencies from the underlying infrastructure, ensuring consistency across different environments.
-
 - Dockerfile: A text file that contains instructions for building Docker images. It specifies the base image, environment variables, dependencies, and commands needed to set up the application environment.
 
 ##### Key Concepts:
 
 - Containerization: The process of packaging an application and its dependencies into a container. This allows the application to run consistently across different environments, from development to production.
-
 - Layered File System: Docker uses a layered file system to optimize image builds and minimize storage space. Each instruction in a Dockerfile creates a new layer, making it possible to reuse existing layers when building new images.
-
 - Networking: Docker provides networking capabilities to enable communication between containers and other networked services. Users can create custom networks to isolate containers or connect them to external networks.
-
 - Volumes: Docker volumes provide persistent storage for containers. Volumes enable data to persist even after a container is stopped or deleted, making them suitable for storing application data, logs, and configuration files.
 
 ##### Use Cases:
@@ -75,11 +72,10 @@ Docker is a platform that enables developers to build, ship, and run application
 
 - Development Environments: Docker can be used to create lightweight, reproducible development environments. Developers can use Docker to quickly set up development environments 
 
-#### General Kubernetes Architecture
+#### Cloud based Kubernetes (EKS/AKS) Architectures
 
 - Master nodes for control plane operations
 - Worker nodes for executing application workloads
-
 
 
 #### I have broken down this repo into 4 subfolders folders
@@ -109,20 +105,12 @@ The deployment unfolded in the following key steps:
 - Contains different microservice applications in C#, Java springboot, node & Python
 
 
-#### For both EKS and AKS, you need 2 things:
 
-    - A cluster
-    - A way to deploy workloads into the cluster
-
-
-##### History Lesson ###################
+##### Understanding Kubernetes components - the details.
 
 
 
-
-
-
-##### Namespaces 
+###### Namespaces 
 
 
 In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
@@ -150,7 +138,7 @@ Below are a list of benefits you get when you take advantage of namespaces in Ku
 - Scaling and Upgrades: Facilitates seamless scaling, minimizes impact.
 
 
-##### Performance optimization is all about three things
+###### Performance optimization is all about three things
 
 1. Cost Optimization
 2. Kubernetes Resource Optimization
