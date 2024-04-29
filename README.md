@@ -28,14 +28,11 @@ The diagram below shows the architecture of Docker and how it works when we run 
  
 There are 3 components in Docker architecture: 
  
-🔹 Docker client 
-The docker client talks to the Docker daemon. 
+🔹 Docker client - the docker client talks to the Docker daemon. 
  
-🔹 Docker host 
-The Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. 
+🔹 Docker host - the Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. 
  
-🔹 Docker registry 
-A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use. 
+🔹 Docker registry - A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use. 
  
 Let’s take the “docker run” command as an example. 
 1. Docker pulls the image from the registry. 
@@ -94,16 +91,18 @@ Docker is a platform that enables developers to build, ship, and run application
 ##### AKS Platform
 - Contains terraform code to deploy EKS infrastructure on Azure.
 
-Excited to share insights into my latest project leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
-In this project, I focused on automating the deployment of various resources to support the AKS cluster enhancing security and isolating network resources using a Service Principal. The deployment unfolded in the following key steps:
-1️⃣ Virtual Network Creation: A secure space for hosting the AKS cluster, ensuring isolation from other network resources.
-2️⃣ Azure Container Registry: Ensuring secure and private container image management.
-3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
-4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using Terraform for automatic scaling and adaptability.
-🔗 Check out the GitHub repo https://lnkd.in/dyJG4f_M for a detailed look into the project architecture and configurations.
-#Terraform #Azure #AKS #DevOps #CloudComputing #InfrastructureAsCode #Containerization
-Excited to hear your thoughts and feedback on this journey! Let's continue pushing the boundaries of automation and secure cloud deployments. 💻🌐
-Feel free to customize it further to match your personal style and preferences!
+Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
+
+In this project, I focused on automating the deployment of various resources to support the AKS cluster enhancing security and isolating network resources using a Service Principal. 
+
+The deployment unfolded in the following key steps:
+
+- 1️⃣ Virtual Network Creation: A secure space for hosting the AKS cluster, ensuring isolation from other network resources.
+- 2️⃣ Azure Container Registry: Ensuring secure and private container image management.
+- 3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
+- 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
+
+
 
 
 ##### AKS Applications
