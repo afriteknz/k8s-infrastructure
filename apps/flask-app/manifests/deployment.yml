@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: "cubemservices-8afd"
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: "cubemservices-8afd"
+  template:
+    metadata:
+      labels:
+        app: "cubemservices-8afd"
+    spec:
+      containers:
+        - name: "cubemservices-8afd"
+          image: "cubem.azurecr.io/cubemservices"
+          ports:
+          - containerPort: 80

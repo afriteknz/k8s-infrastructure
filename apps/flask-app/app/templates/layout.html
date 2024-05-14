@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Frampol</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+</head>
+<body>
+
+<div class=page>
+    <div class="nav">
+      <ul>
+        <li class="home"><a href="{{ url_for('home') }}">Home</a></li>
+        <li class="tutorials"> <a href="{{ url_for('show_dropdowns') }}">AddSubscriber</a></li>
+        <li class="home"><a href="{{ url_for('show_entries') }}">ViewSubscribers</a></li>
+
+
+        </ul>
+    </div>
+  <div class="notify">
+  {% if not session.logged_in %}
+    <a href="{{ url_for('login') }}">Click here to Log in</a>
+  {% else %}
+    <a href="{{ url_for('logout') }}">Click here to Log out</a>
+  {% endif %}
+  </div>
+  {% for message in get_flashed_messages() %}
+    <div class=flash>{{ message }}</div>
+  {% endfor %}
+  <ul class=entries>
+   {% block body %}{% endblock %}
+  </ul>
+</div>
+</body>
+</html>

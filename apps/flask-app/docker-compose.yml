@@ -1,0 +1,49 @@
+services:
+  web:
+    container_name: frontend-app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    restart: always
+    ports:
+      - 6080:5000
+    environment:
+      FLASK_APP: ./app/app.py
+    volumes:
+      - .:/app
+    networks:
+      - backend
+
+  db:
+    container_name: backend # Container Name: Specifies the name of the container as backend.
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    environment: # Environment Variables: Sets environment variables for configuring MySQL. The MYSQL_ROOT_PASSWORD is set to 'beautiful', and MYSQL_DATABASE is set to 'frampol_db'.
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    restart: always # Restart Policy: Configures the container to restart automatically (restart: always) if it stops unexpectedly.
+    ports: # Ports: Maps port 3307 on the host machine to port 3306 inside the container, allowing external access to the MySQL service.
+      - "3307:3306"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d/:ro # ./backend:/docker-entrypoint-initdb.d/: Mounts the ./backend directory on the host machine into the /docker-entrypoint-initdb.d/ directory inside the container. This is used for initializing the database with SQL scripts during container startup.
+    networks:
+      - backend
+
+networks: # Networks: Associates the container with the backend network, presumably defined elsewhere in the Docker Compose file.
+    backend:
+
+#volumes:
+#    app:
+#    backend:
+#    data:
+
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+<!doctype html>
+<title>Home</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+{% extends "layout.html" %}
+{% block body %}
+<ul class="home">
+ <li>ToDo</li>
+ <li>Display relevant textboxes when adding new subscribers </li>
+  <li>Validate ip address against frampol IP Block </li>
+  <li>Add pagination </li>
+ <li>Add login logic </li>
+</ul>
+ {% endblock %}

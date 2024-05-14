@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+{% extends "layout.html" %}
+{% block body %}
+
+  <table cellspacing='0'>
+
+  <!-- Table Header -->
+	<thead>
+		<tr>
+		<th>IP Address</th><th>Active Plan</th><th>Select New Plan</th>
+		</tr>
+	</thead>
+
+	<!-- Table Body -->
+	<tbody>
+
+  {% for sub in subscribers %}
+  <form action="{{ url_for('update_entry',sub_id=sub.sub_id) }}" method=post class=add-entry>
+    <tr>
+    <td ><input type="text" value="{{ sub.ipaddress }}" name="ipaddress" readonly id="readonly_box_one"></td>
+    <td ><input type="text" value="{{ sub.plan_name }}" name="post" readonly id="readonly_box_two"></td>
+
+        <td>
+        <select name="plan_id" class="dropdown">
+         {% for key in dropdown %}
+           <option value="{{key.plan_id}}" SELECTED>{{ key.plan_name }}</option>
+         {% endfor %}
+         </select>
+         </td>
+
+
+          <td><input type=submit value=Update class="button"></td>
+  </form>
+  {% else %}
+
+    <p><em>Unbelievable. No entries here so far</em></p>
+    </tr>
+  {% endfor %}
+
+  </tbody>
+  </table>
+
+{% endblock %}
+
+
+	<!-- Table Body -->
+
+</body>
+</html>
