@@ -1,0 +1,6 @@
+databaseconfig.py
+*.pyc
+.idea/*
+.env
+
+
