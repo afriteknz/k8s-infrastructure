@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-svc
+# the name of the service
+spec:
+  type: NodePort
+  # specifies that the service is of type NodePort. This exposes the service on a static port on each node in the cluster
+  selector:
+    # specifies which pods this service should direct traffic to.
+    app: web-app
+  ports:
+    - protocol: TCP
+      nodePort: 30036
+      # specifies the node port that the service will be exposed on. This must be in the range of 30000-32767
+      port: 5005
+      # pecifies the port that the service will listen on.
+      # This is the port that external clients will use to access the service.
+      targetPort: 5000
+# specifies the port that the service will forward traffic to.
+# This is the port that the pods are listening on.

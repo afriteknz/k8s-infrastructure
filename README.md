@@ -1,5 +1,14 @@
 ### This repo documents my EKS & AKS journey
 
+I came up with this repo when 
+
+
+
+
+
+
+
+
 My end-goal is "I want to reliably self-host services", and not "I want to fully understand a complex, scalable, and highly sophisticated container orchestrator" With that in mind
 
 #### I have broken down this repo into 4 subfolders folders
