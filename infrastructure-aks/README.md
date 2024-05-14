@@ -59,7 +59,7 @@ docker images
 
 - Tag the image 
 
-docker tag mywebapp:v1 cubemcr.azurecr.io/mywebapp:v1
+docker tag mywebapp:v1 cubemcr.azurecr.io/mywebapp:v1git 
 
 - Push the image
 
