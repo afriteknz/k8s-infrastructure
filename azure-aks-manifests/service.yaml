@@ -2,20 +2,18 @@ apiVersion: v1
 kind: Service
 metadata:
   name: web-svc
-# the name of the service
+  # Name of the service
 spec:
   type: LoadBalancer
-  # specifies that the service is of type NodePort. This exposes the service on a static port on each node in the cluster
+  # Specifies that the service is of type LoadBalancer
   selector:
-    # specifies which pods this service should direct traffic to.
     app: web-app
+    # Selects pods with the label 'app: web-app' to direct traffic to
   ports:
     - protocol: TCP
-      #nodePort: 30036
-      # specifies the node port that the service will be exposed on. This must be in the range of 30000-32767
-      port: 6080
-      # pecifies the port that the service will listen on.
-      # This is the port that external clients will use to access the service.
+      # Specifies the TCP protocol
+      port: 80
+      # Specifies the port that external clients will use to access the service
       targetPort: 5000
-# specifies the port that the service will forward traffic to.
-# This is the port that the pods are listening on.
+      # Specifies the port that the service will forward traffic to
+      # This is the port that the pods are listening on

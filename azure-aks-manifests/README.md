@@ -59,7 +59,7 @@ docker images
 
 - Tag the image 
 
-docker tag mywebapp:v1 cubemcr.azurecr.io/mywebapp:v1git 
+docker tag mywebapp:v1 cubemcr.azurecr.io/mywebapp:v1
 
 - Push the image
 
@@ -75,8 +75,8 @@ Output
 
 - Test the running application
 
-kubectl get service web-app
-kubectl get service web-svc
+kubectl get deployment web-app 
+kubectl get service web-svc  --watch
 
 Output 
 
