@@ -1,23 +1,42 @@
-### This repository documents my Kubernetes (EKS & AKS) journey, emphasizing my general understanding of how one can use it to deploy microservices applications [This is a living document and still a WIP].
+### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension of how Kubernetes orchestrates microservices applications.
 
-In summary, for kubenetes solutions you need 2 things:
+### What inspired this repo 
 
-    - A cluster 
-    - A way to deploy workloads into the cluster
+My journey into the world of containers and container orchestraters has been very tumultous. I started  (2010) my career in I.T in an organisation that fully embraced opensource, this meant that any solution to a problem was supposed to be solved using 
+open source solutions. It was a Java shop, I worked with 3 Java developers that developed applications that we hosted on either Apache tomcat or Glassfish.
+ 
+Challenges such as, 
 
-This repo will focus on how DevOps teams can achieve   
+- difficulty in mantaining similar environments across all developers 
+- Slow shipping of applications 
+- Development environments that differed from production environments 
+- Manualy code deployments 
 
-    - Infrastructure CI/CD - deployment, management and monitoring
-    - Application CI/CD - deployment, management and monitoring
+I was a Linux Administrator and I was responsible for addressing all the problems above. Unfortunately Docker wasnt a thing and the next best thing we had to solve the above problems was 
 
+- interwoven bash scripts that were difficult to troubleshoot.
+- virtualisation that sort of helped create isolated environments. 
+- Intergrating Jenkins even though no one really understood how it worked completely.
 
-#### What inspired this repo 
+2023 I was involved in an AWS EKS project where the client wanted to design a multi account/cluster solution for the customers. I have a strong background in Linux admin with its intricasies (RHCE) and between 2010 & 2023, I had played around with Podman & Docker. 
 
-How many can confidently say they understand the Kubernetes ecosystem? Probably just a few. To address this, I've decided to document my experiences with Kubernetes. This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly AKS and EKS.
+Given the complexities of containerisation and kubernetes, I decided to document my experiences. This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly AKS and EKS.
 
 Ultimately, my goal isn't necessarily to master every aspect of Kubernetes. Instead, I aim to understand kubernetes core fundamentals enough to be able to host microservices developed in either Java, C#, PHP, Python and any of the morden languages.
 
 This practical approach guides my efforts, prioritizing operational effectiveness over exhaustive comprehension.
+
+This write up will cover concepts below bulding up to a CI/CD pipeline (build, integrate and deploy an app).
+
+    python environment
+    Docker + Docker-Compose
+    Minikube
+    Kubernetes
+    *** Helm
+    GitHub actions
+    Argo CD
+    Prometheus and Grafana
+    Terraform
 
 #### Docker & Kubernetes - Understanding the relationship
 
@@ -80,12 +99,14 @@ Docker is a platform that enables developers to build, ship, and run application
 
 #### I have broken down this repo into 4 subfolders folders
 
-##### EKS Platform
+##### infrastructure-eks
 - Contains terraform code to deploy EKS infrastructure on AWS.
-##### EKS Applications
+
+##### apps
 - Contains different microservice applications in C#, Java springboot, node & Python
-##### AKS Platform
-- Contains terraform code to deploy EKS infrastructure on Azure.
+
+##### infrastructure-aks  
+- Contains terraform code to deploy AKS infrastructure on Azure.
 
 Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
 
@@ -97,13 +118,6 @@ The deployment unfolded in the following key steps:
 - 2️⃣ Azure Container Registry: Ensuring secure and private container image management.
 - 3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
 - 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
-
-
-
-
-##### AKS Applications
-- Contains different microservice applications in C#, Java springboot, node & Python
-
 
 
 ##### Understanding Kubernetes components - the details.
@@ -119,30 +133,10 @@ Multi-tenancy where each customer is running the same instance of a vendor appli
 
 In this example, ![alt text](images/image.png)
 
-by changing the namespaces within the #Kubernetes manifest, different instances of the #webRTC application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
-
-Below are a list of benefits you get when you take advantage of namespaces in Kubernetes
-
-- Isolation: Separates teams or clients, maintains resource and access control.
-
-- Resource Management: Efficiently allocates and manages CPU, memory, storage.
-
-- Security: Ensures precise access control and data privacy.
-
-- Quotas and Limits: Enforces resource quotas, prevents exhaustion.
-
-- Customization: Tailors configurations to specific requirements.
-
-- Monitoring and Logging: Simplifies monitoring, offers better insight.
-
-- Scaling and Upgrades: Facilitates seamless scaling, minimizes impact.
-
+by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
 ###### Performance optimization is all about three things
 
 1. Cost Optimization
 2. Kubernetes Resource Optimization
 3. Worker Node Optimization
-
-
-#### 
