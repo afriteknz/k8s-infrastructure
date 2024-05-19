@@ -28,15 +28,14 @@ This practical approach guides my efforts, prioritizing operational effectivenes
 
 This write up will cover concepts below bulding up to a CI/CD pipeline (build, integrate and deploy an app).
 
-    python environment
-    Docker + Docker-Compose
-    Minikube
-    Kubernetes
-    Helm
-    GitHub actions
-    Argo CD
-    Prometheus and Grafana
-    Terraform
+    - Software development in python environment
+    - Containerisation with Docker + Docker-Compose
+    - Kubernetes (EKS/AKS)
+    - Packaging with Helm
+    - CI/CD pipeline with GitHub actions
+    - GitOps with Argo CD (I will also look at flux later on)
+    - Observability & Monitoring with Prometheus and Grafana
+    - Infrastructure as Code with Terraform (deployment of the infrastructure)
 
     Additionally, I will explore 
 
@@ -44,9 +43,16 @@ This write up will cover concepts below bulding up to a CI/CD pipeline (build, i
     CNI plugins
     Service mesh - Istitio
 
+Questions that I kept asking myself
+
+QQ: Do you store your #kubernetes manifests in the same repo with your application code? If you DO store them in the same repo, why?
+        - does the same team own both parts of the application/cluster.
+
 #### Docker & Kubernetes - Understanding the relationship
 
-CI/CD *** update this 
+CI/CD 
+
+![alt text](/images/cicd.png)
 
 ##### What is Docker and how does it work?
 
