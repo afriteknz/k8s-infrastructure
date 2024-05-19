@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+# specifies the API version of Kubernetes
+kind: Deployment
+#  this is a deployment resource in Kubernetes
+metadata:
+  name: backend
+  # the name of the deployment
+  labels:
+    # key-value pairs that are used to identify the deployment
+    app: backend
+spec:
+  # specification of the deployment which includes the desired state of the deployment
+  replicas: 1
+  #  the number of replicas or instances of the application that will be deployed.
+  selector:
+    # the selector used to identify the pods that belong to this deployment.
+    matchLabels:
+      app: backend
+  template:
+    # the pod template used by the deployment.
+    metadata:
+      labels:
+        app: backend
+    spec:
+      # This section specifies the pod specification.
+      containers:
+        - name: backend
+          # the name of the container.
+          imagePullPolicy: IfNotPresent
+          # the policy for when to pull the container image. If the image is not present, then it will be pulled from the registry.
+          image: cubemcr.azurecr.io/mywebdb:v1
+          # This is the name of the image that will be used for the container.
+          ports:
+            - containerPort: 3306
+          # This is the port that will be exposed by the container.
+          resources:
+            # resource requirements for the container.
+            limits:
+              # maximum resources that can be used by the container.
+              memory: 512Mi
+              cpu: "1"
+            requests:
+              # minimum resources that should be available for the container.
+              memory: 256Mi
+              cpu: "0.2"

@@ -1,12 +1,13 @@
 # Use the mariadb:latest image as the base image
 FROM mariadb:latest
 
-COPY  ./db/ /docker-entrypoint-initdb.d/
+# Copy SQL scripts into the initialization directory
+COPY ./db/ /docker-entrypoint-initdb.d/
+
+# Set environment variables
+ENV MARIADB_ROOT_PASSWORD=beautiful
+ENV MYSQL_DATABASE=frampoldb
+
 # Expose port 3306 for MySQL connections
-
-ARG MYSQL_DATABASE
-ARG MARIADB_ROOT_PASSWORD
-ENV MARIADB_ROOT_PASSWORD = "beautiful"
-ENV MYSQL_DATABASE = "frampoldb"
-
 EXPOSE 3306
+
