@@ -8,6 +8,8 @@ databaseconfig.py
 
 **/.terraform/*
 
+.terraform/*
+
 
 
 # .tfstate files
