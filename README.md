@@ -39,14 +39,24 @@ This write up will cover concepts below bulding up to a CI/CD pipeline (build, i
 
     Additionally, I will explore 
 
-    Various types of supported Ingress controllers 
-    CNI plugins
-    Service mesh - Istitio
+    - Various types of supported Ingress controllers 
+    - CNI plugins
+    - Service mesh - Istitio
 
-Questions that I kept asking myself
+Questions you should ask yourself?
 
-QQ: Do you store your #kubernetes manifests in the same repo with your application code? If you DO store them in the same repo, why?
-        - does the same team own both parts of the application/cluster.
+QQ: Should you store your #kubernetes manifests in the same repo with your application code? If you DO store them in the same repo, why?
+QQ: Mono repo vs poly repo?
+QQ: Branches or no branches for application release?
+        - does the same team own both parts of the application/cluster. While you are thinking please read 
+        - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
+        - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
+        - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
+        - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+        - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
+        - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
+        - 
+
 
 #### Docker & Kubernetes - Understanding the relationship
 
