@@ -32,11 +32,17 @@ This write up will cover concepts below bulding up to a CI/CD pipeline (build, i
     Docker + Docker-Compose
     Minikube
     Kubernetes
-    *** Helm
+    Helm
     GitHub actions
     Argo CD
     Prometheus and Grafana
     Terraform
+
+    Additionally, I will explore 
+
+    Various types of supported Ingress controllers 
+    CNI plugins
+    Service mesh - Istitio
 
 #### Docker & Kubernetes - Understanding the relationship
 
