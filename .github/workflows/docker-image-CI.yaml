@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
     paths:
       - 'apps/flask-app-v3/**'
+      - '.github/workflows/docker-image-CI.yaml'
   # pull_request:
   #   branches: [ "main" ]
   #   paths:
