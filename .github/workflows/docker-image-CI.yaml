@@ -1,14 +1,14 @@
-name: DockerImageCI
+name: Docker Image CI
 
 on:
   push:
     branches: [ "main" ]
     paths:
       - 'apps/flask-app-v3/**'
-  pull_request:
-    branches: [ "main" ]
-    paths:
-      - 'apps/flask-app-v3/**'
+  # pull_request:
+  #   branches: [ "main" ]
+  #   paths:
+  #     - 'apps/flask-app-v3/**'
 
 jobs:
   push_to_registry:
