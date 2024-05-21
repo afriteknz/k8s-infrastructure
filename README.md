@@ -55,7 +55,8 @@ QQ: Branches or no branches for application release?
         - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
         - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
         - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
-        - 
+        - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
+        -
 
 
 #### Docker & Kubernetes - Understanding the relationship
