@@ -1,9 +1,17 @@
 ### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension Kubernetes concepts, CI/CD, GitOps & Microservices applications. 
 
 ```
-Repo structure - There are variations of multi, mono & poly repo structure. There are pros & cons of each but decided to to adopt the poly repo for the following resons.
+Repo structure - There are variations of multi, mono & poly repo structure. In this project, I adopted the Poly repo structure. 
+
+- Repo that includes EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+- Repo that includes k8s manifests - https://github.com/afriteknz/k8s-manifests 
+- Repo that includes applications. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 ```
+
+Why poly repo 
+
+I
 
 
 
