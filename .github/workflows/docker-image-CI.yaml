@@ -50,4 +50,4 @@ jobs:
           context: apps/flask-app-v3/
           file: apps/flask-app-v3/Dockerfile
           push: true
-          tags: my-image:${{ env.IMAGE_VERSION }}
+          tags: v1
