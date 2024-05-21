@@ -1,4 +1,11 @@
-### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension of how Kubernetes orchestrates microservices applications.
+### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension Kubernetes concepts, CI/CD, GitOps & Microservices applications. 
+
+```
+Repo structure - There are variations of multi, mono & poly repo structure. There are pros & cons of each but decided to to adopt the poly repo for the following resons.
+
+```
+
+
 
 ### What inspired this repo 
 
