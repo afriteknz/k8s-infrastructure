@@ -1,7 +1,0 @@
-databaseconfig.py
-*.pyc
-.idea/*
-.env
-.venv
-
-
