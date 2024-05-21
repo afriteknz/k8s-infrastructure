@@ -19,30 +19,17 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v3
 
-      - name: Set Docker image version
-        run: echo "1.0.0" > IMAGE_VERSION
-        id: version
-
-      - name: Upload version to artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: version
-          path: IMAGE_VERSION
-      
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
         with:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      
-      - name: Download version artifact
-        uses: actions/download-artifact@v2
+
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v2
         with:
-          name: version
-          path: .
-      
-      - name: Read version from file
-        run: IMAGE_VERSION=$(cat IMAGE_VERSION)
+         images: chamambom/web
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -50,4 +37,5 @@ jobs:
           context: apps/flask-app-v3/
           file: apps/flask-app-v3/Dockerfile
           push: true
-          tags: v1
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
