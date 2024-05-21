@@ -39,6 +39,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: version
+          path: .
+      
+      - name: Read version from file
+        run: IMAGE_VERSION=$(cat IMAGE_VERSION)
       
       - name: Build and push Docker image
         uses: docker/build-push-action@v2
@@ -46,4 +50,4 @@ jobs:
           context: apps/flask-app-v3/
           file: apps/flask-app-v3/Dockerfile
           push: true
-          tags: my-image:${{ steps.download-version.outputs.download-path }}
+          tags: my-image:${{ env.IMAGE_VERSION }}
