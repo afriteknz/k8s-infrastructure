@@ -17,7 +17,9 @@ asking the following questions.
 Questions you should ask yourself?
 
 QQ: Should you store your #kubernetes manifests in the same repo with your application code? If you DO store them in the same repo, why?
+
 QQ: Mono repo vs poly repo?
+
 QQ: Branches or no branches for application release?
         - does the same team own both parts of the application/cluster. While you are thinking please read 
         - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
