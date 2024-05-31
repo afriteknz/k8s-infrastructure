@@ -1,4 +1,4 @@
-### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension Kubernetes concepts, CI/CD, GitOps & Microservices applications.
+### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
 
 Design/tools choices 
 - Multi repo - (Github)
