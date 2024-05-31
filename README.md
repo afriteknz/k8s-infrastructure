@@ -88,7 +88,7 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
 
 #### Design Considerations 
 
-**Why I chose a poly repo structur** 
+**Why** I chose a poly repo structure
 
   QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
@@ -107,7 +107,7 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
     - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-Why CI/CD with GitOps
+**Why** CI/CD with GitOps
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
 
@@ -241,7 +241,7 @@ The deployment unfolded in the following key steps:
 
 ```
 
-Kubernetes components - the details.
+#### Kubernetes components - the details.
 
 Namespaces 
 
