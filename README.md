@@ -14,8 +14,7 @@ Repo structure - There are variations of mono & poly (multi) repo structure. In 
 ```
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - k8s manifests - https://github.com/afriteknz/k8s-manifests 
-- Applications repo. [Each application has its own repo and where it makes sense, 
-2 different microservices can be bundled together]
+- Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 ```
 #### What inspired this repo 
@@ -89,7 +88,7 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
 
 #### Design Considerations 
 
-Why I chose a poly repo structure 
+*Why I chose a poly repo structure* 
 
   QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
