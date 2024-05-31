@@ -7,15 +7,13 @@ The solution uses the following tools
 ```
 - Multi repo - (Github - You can use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins) 
-
+- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
 #EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 #k8s manifests - https://github.com/afriteknz/k8s-manifests 
 #Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
-
 
 #### What inspired this repo 
 
