@@ -88,7 +88,7 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
 
 #### Design Considerations 
 
-*Why I chose a poly repo structure* 
+**Why I chose a poly repo structur** 
 
   QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
