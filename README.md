@@ -1,94 +1,23 @@
-### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
+#### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
 
 Important bits to keep in mind while going through this README and anyone who wants to reproduce this. 
 
 The solution uses the following tools
 
+```
 - Multi repo - (Github - You can use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
 - CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins) 
+
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
-- Repo that includes EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-- Repo that includes k8s manifests - https://github.com/afriteknz/k8s-manifests 
-- Repo that includes applications. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
-
-```
-
-Why I chose a poly repo structure
-
-- Because I read these articles below. Very opinionated but offer great insights to the criteria to use if you want to choose.
-
-Questions you should ask yourself?
-
-QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
-
-QQ: Mono repo vs poly repo?
-
-QQ: Branches or no branches for application release?
-        - does the same team own both parts of the application/cluster. While you are thinking please read 
-        - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
-        - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
-        - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
-        - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
-        - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
-        - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
-        - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
-
-Why CI/CD with GitOps
-
-GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
-
-BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks
+#EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+#k8s manifests - https://github.com/afriteknz/k8s-manifests 
+#Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 
-The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
-
-##### Architecture
-
-Option 1 - Push-based CI/CD approaches
-
-![alt text](/img/ci-cd-gitops-github-actions-aks-push.png)
-
-
-Push-based architecture with GitHub Actions for CI and CD.
-
-Dataflow
-
-This scenario covers a push-based DevOps pipeline for a two-tier web application, with a front-end web component and a back-end that uses Redis. This pipeline uses GitHub Actions for build and deployment. The data flows through the scenario as follows:
-
-    1 - The app code is developed.
-    2 - The app code is committed to a GitHub git repository.
-    3 - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container or Docker Registry.
-    4 - A GitHub Actions job deploys, or pushes, the app, as described in the manifest files, to the Azure Kubernetes Service (AKS) cluster using kubectl or the Deploy to Kubernetes cluster action.
-
-Option 2: Pull-based CI/CD (GitOps)
-
-![alt text](/img/ci-cd-gitops-github-actions-aks-pull.png)
-
-
-Dataflow
-
-This scenario covers a pull-based DevOps pipeline for a two-tier web application, with a front-end web component and a back-end that uses Redis. This pipeline uses GitHub Actions for build. For deployment, it uses Argo CD as a GitOps operator to pull/sync the app. The data flows through the scenario as follows:
-
-    1 - The app code is developed.
-    2 - The app code is committed to a GitHub repository.
-    3 - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container Registry.
-    4 - GitHub Actions updates a Kubernetes manifest deployment file with the current image version based on the version number of the container image in the Azure Container Registry.
-    5 - Argo CD syncs with, or pulls from, the Git repository.
-    6 - Argo CD deploys the app to the AKS cluster.
-
-Components
-
-    - GitHub Actions is an automation solution that can integrate with Azure services for continuous integration (CI). In this scenario, GitHub Actions orchestrates the creation of new container images based on commits to source control, pushes those images to Azure Container Registry, then updates the Kubernetes manifest files in the GitHub repository.
-    - Azure Kubernetes Service (AKS) is a managed Kubernetes platform that lets you deploy and manage containerized applications without container orchestration expertise. As a hosted Kubernetes service, Azure handles critical tasks like health monitoring and maintenance for you.
-    - Azure Container Registry stores and manages container images that are used by the AKS cluster. Images are securely stored, and can be replicated to other regions by the Azure platform to speed up deployment times.
-    - GitHub is a web-based source control system that runs on Git and is used by developers to store and version their application code. In this scenario, GitHub is used to store the source code in a Git repository, then GitHub Actions is used to perform build and push of the container image to Azure Container Registry in the push-based approach.
-    - Argo CD is an open-source GitOps operator that integrates with GitHub and AKS. Argo CD supports continuous deployment (CD). Flux could have been used for this purpose, but Argo CD showcases how an app team might choose a separate tool for their specific application lifecycle concerns, compared with using the same tool that the cluster operators use for cluster management.
-    - Azure Monitor helps you track performance, maintain security, and identify trends. Metrics obtained by Azure Monitor can be used by other resources and tools, such as Grafana.
-
-### What inspired this repo 
+#### What inspired this repo 
 
 My journey into the world of containers and container orchestraters has been very tumultous. I started  (2010) my career in I.T in an organisation that fully embraced opensource, this meant that any solution to a problem was supposed to be solved using 
 open source solutions. It was a Java shop, I worked with 3 Java developers that developed applications that we hosted on either Apache tomcat or Glassfish.
@@ -132,7 +61,78 @@ This write up will cover concepts below bulding up to a CI/CD pipeline (build, i
     - Service mesh - Istitio
 
 
-        -
+#### Why I chose a poly repo structure
+
+- Because I read these articles below. Very opinionated but offer great insights to the criteria to use if you want to choose.
+
+Questions you should ask yourself?
+
+QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
+
+QQ: Mono repo vs poly repo?
+
+QQ: Branches or no branches for application release?
+        - does the same team own both parts of the application/cluster. While you are thinking please read 
+        - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
+        - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
+        - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
+        - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+        - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
+        - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
+        - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
+
+#### Why CI/CD with GitOps
+
+GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
+
+BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks
+
+
+The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
+
+#### Architecture
+
+Option 1 - Push-based CI/CD approaches
+
+![alt text](/img/ci-cd-gitops-github-actions-aks-push.png)
+
+
+Push-based architecture with GitHub Actions for CI and CD.
+
+Dataflow
+
+This scenario covers a push-based DevOps pipeline for a two-tier web application, with a front-end web component and a back-end that uses Redis. This pipeline uses GitHub Actions for build and deployment. The data flows through the scenario as follows:
+
+    1 - The app code is developed.
+    2 - The app code is committed to a GitHub git repository.
+    3 - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container or Docker Registry.
+    4 - A GitHub Actions job deploys, or pushes, the app, as described in the manifest files, to the Azure Kubernetes Service (AKS) cluster using kubectl or the Deploy to Kubernetes cluster action.
+
+Option 2: Pull-based CI/CD (GitOps)
+
+![alt text](/img/ci-cd-gitops-github-actions-aks-pull.png)
+
+
+Dataflow
+
+This scenario covers a pull-based DevOps pipeline for a two-tier web application, with a front-end web component and a back-end that uses Redis. This pipeline uses GitHub Actions for build. For deployment, it uses Argo CD as a GitOps operator to pull/sync the app. The data flows through the scenario as follows:
+
+    1 - The app code is developed.
+    2 - The app code is committed to a GitHub repository.
+    3 - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container Registry.
+    4 - GitHub Actions updates a Kubernetes manifest deployment file with the current image version based on the version number of the container image in the Azure Container Registry.
+    5 - Argo CD syncs with, or pulls from, the Git repository.
+    6 - Argo CD deploys the app to the AKS cluster.
+
+Components
+
+    - GitHub Actions is an automation solution that can integrate with Azure services for continuous integration (CI). In this scenario, GitHub Actions orchestrates the creation of new container images based on commits to source control, pushes those images to Azure Container Registry, then updates the Kubernetes manifest files in the GitHub repository.
+    - Azure Kubernetes Service (AKS) is a managed Kubernetes platform that lets you deploy and manage containerized applications without container orchestration expertise. As a hosted Kubernetes service, Azure handles critical tasks like health monitoring and maintenance for you.
+    - Azure Container Registry stores and manages container images that are used by the AKS cluster. Images are securely stored, and can be replicated to other regions by the Azure platform to speed up deployment times.
+    - GitHub is a web-based source control system that runs on Git and is used by developers to store and version their application code. In this scenario, GitHub is used to store the source code in a Git repository, then GitHub Actions is used to perform build and push of the container image to Azure Container Registry in the push-based approach.
+    - Argo CD is an open-source GitOps operator that integrates with GitHub and AKS. Argo CD supports continuous deployment (CD). Flux could have been used for this purpose, but Argo CD showcases how an app team might choose a separate tool for their specific application lifecycle concerns, compared with using the same tool that the cluster operators use for cluster management.
+    - Azure Monitor helps you track performance, maintain security, and identify trends. Metrics obtained by Azure Monitor can be used by other resources and tools, such as Grafana.
+
 
 
 #### Docker & Kubernetes - Understanding the relationship
@@ -195,17 +195,6 @@ Docker is a platform that enables developers to build, ship, and run application
 - Master nodes for control plane operations
 - Worker nodes for executing application workloads
 
-
-#### I have broken down this repo into 4 subfolders folders
-
-##### infrastructure-eks
-- Contains terraform code to deploy EKS infrastructure on AWS.
-
-##### apps
-- Contains different microservice applications in C#, Java springboot, node & Python
-
-##### infrastructure-aks  
-- Contains terraform code to deploy AKS infrastructure on Azure.
 
 Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
 
