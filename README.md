@@ -12,9 +12,9 @@ The solution uses the following tools
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
 ```
-- #EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-- #k8s manifests - https://github.com/afriteknz/k8s-manifests 
-- #Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
+- EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+- k8s manifests - https://github.com/afriteknz/k8s-manifests 
+- Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 ```
 #### What inspired this repo 
@@ -28,7 +28,6 @@ As a Linux Administrator responsible for deploying the code into dev, uat and pr
 - Slow shipping of applications 
 - Development environments that differed from production environments 
 - Lack of automation, manual code deployments (Jenkins came around 2011)
-
 ```
 
 Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely on more traditional approaches and tools.
@@ -61,7 +60,7 @@ Given the complexities of that project with regards to
 
  ```
 
- I decided to document my experiences.  
+ #### Documenting my experiences.  
  
 This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly any that involve AKS and EKS.
 
@@ -115,7 +114,7 @@ BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenari
 
 The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
 
-#### Architecture
+Architecture
 
 Option 1 - Push-based CI/CD approaches
 
@@ -160,7 +159,7 @@ Components
 
 
 
-#### Docker - what is it and why ?
+#### Docker - Where does docker fit in all this?
 
 
 The diagram below shows the architecture of Docker and how it works when we run “docker build”, “docker pull” and “docker run”. 
@@ -168,21 +167,26 @@ The diagram below shows the architecture of Docker and how it works when we run 
 ![alt text](/img/docker.png)
  
 There are 3 components in Docker architecture: 
- 
+``` 
 🔹 Docker client - the docker client talks to the Docker daemon.  
 🔹 Docker host - the Docker daemon listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes.  
-🔹 Docker registry - A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use. 
+🔹 Docker registry - A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use.
+```
  
 Let’s take the “docker run” command as an example. 
+```
 1. Docker pulls the image from the registry. 
 2. Docker creates a new container. 
 3. Docker allocates a read-write filesystem to the container. 
 4. Docker creates a network interface to connect the container to the default network. 
 5. Docker starts the container. 
+```
 
 Docker is a platform that enables developers to build, ship, and run applications in containers. Containers are lightweight, portable, and self-sufficient environments that encapsulate all the dependencies required to run an application.
 
 Key Components:
+
+```
 
 - Docker Engine: The core component of Docker, responsible for building, running, and managing containers. It consists of:
 
@@ -192,14 +196,22 @@ Key Components:
 - Containers: Runnable instances of Docker images. Containers isolate the application and its dependencies from the underlying infrastructure, ensuring consistency across different environments.
 - Dockerfile: A text file that contains instructions for building Docker images. It specifies the base image, environment variables, dependencies, and commands needed to set up the application environment.
 
+```
+
 Key Concepts:
+
+```
 
 - Containerization: The process of packaging an application and its dependencies into a container. This allows the application to run consistently across different environments, from development to production.
 - Layered File System: Docker uses a layered file system to optimize image builds and minimize storage space. Each instruction in a Dockerfile creates a new layer, making it possible to reuse existing layers when building new images.
 - Networking: Docker provides networking capabilities to enable communication between containers and other networked services. Users can create custom networks to isolate containers or connect them to external networks.
 - Volumes: Docker volumes provide persistent storage for containers. Volumes enable data to persist even after a container is stopped or deleted, making them suitable for storing application data, logs, and configuration files.
 
+```
+
 Use Cases:
+
+```
 
 - Application Deployment: Docker simplifies the deployment process by encapsulating applications and their dependencies into containers. This enables developers to deploy applications more efficiently and consistently across different environments.
 
@@ -208,6 +220,8 @@ Use Cases:
 - Continuous Integration/Continuous Deployment (CI/CD): Docker facilitates the adoption of CI/CD practices by providing a consistent environment for building, testing, and deploying applications. Docker images can be automatically built, tested, and deployed using CI/CD pipelines.
 
 - Development Environments: Docker can be used to create lightweight, reproducible development environments. Developers can use Docker to quickly set up development environments 
+
+```
 
 #### Cloud based Kubernetes (EKS/AKS) Architectures
 
@@ -220,12 +234,13 @@ Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service
 In this project, I focused on automating the deployment of various resources to support the AKS cluster enhancing security and isolating network resources using a Service Principal. 
 
 The deployment unfolded in the following key steps:
-
+```
 - 1️⃣ Virtual Network Creation: A secure space for hosting the AKS cluster, ensuring isolation from other network resources.
 - 2️⃣ Azure Container Registry: Ensuring secure and private container image management.
 - 3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
 - 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
 
+```
 
 Kubernetes components - the details.
 
