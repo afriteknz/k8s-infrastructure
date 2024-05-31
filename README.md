@@ -31,9 +31,11 @@ Unfortunately, Docker wasn't available at the time (Docker came around 2013), an
 - Interwoven bash scripts that were difficult to troubleshoot.
 - Virtualization, which helped create isolated environments to some extent. 
 
-Time went by (2010 to todate), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs) and then 2022 I decided to Immigrate from Zimbabwe to New Zealand where I got a Job as a Senior Cloud Engineer(2022 todate). 
+Time went by (2010 to todate), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs).
 
-In my current role, I am more focused on assisting organisations 
+ In 2022, I made the decision to immigrate from Zimbabwe to New Zealand, where I secured a position as a Senior Cloud Engineer, and I have been in this role since then. 
+
+In my current role, my primary focus is on assisting organizations with,
 
 - Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
 - Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure and determining migration pathways using the cloud adoption framework.
@@ -47,8 +49,7 @@ Given the complexities of that project with regards to
  - Automation of application deployment,
  - Automation of infrastructure deployment
 
- I decided to document my experiences. 
- 
+ I decided to document my experiences.  
  
 This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly any that involve AKS and EKS.
 
@@ -85,14 +86,14 @@ QQ: Should you store your #kubernetes manifests in the same repo with your #appl
 QQ: Mono repo vs poly repo?
 
 QQ: Branches or no branches for application release?
-        - does the same team own both parts of the application/cluster. While you are thinking please read 
-        - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
-        - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
-        - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
-        - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
-        - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
-        - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
-        - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
+    - does the same team own both parts of the application/cluster. While you are thinking please read 
+    - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
+    - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
+    - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
+    - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+    - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
+    - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
+    - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
 Why CI/CD with GitOps
 
@@ -148,13 +149,7 @@ Components
 
 
 
-#### Docker & Kubernetes - Understanding the relationship
-
-CI/CD 
-
-![alt text](/img/cicd.png)
-
-##### What is Docker and how does it work?
+#### Docker - what is it and why ?
 
 
 The diagram below shows the architecture of Docker and how it works when we run “docker build”, “docker pull” and “docker run”. 
@@ -176,7 +171,7 @@ Let’s take the “docker run” command as an example.
 
 Docker is a platform that enables developers to build, ship, and run applications in containers. Containers are lightweight, portable, and self-sufficient environments that encapsulate all the dependencies required to run an application.
 
-##### Key Components:
+Key Components:
 
 - Docker Engine: The core component of Docker, responsible for building, running, and managing containers. It consists of:
 
@@ -186,14 +181,14 @@ Docker is a platform that enables developers to build, ship, and run application
 - Containers: Runnable instances of Docker images. Containers isolate the application and its dependencies from the underlying infrastructure, ensuring consistency across different environments.
 - Dockerfile: A text file that contains instructions for building Docker images. It specifies the base image, environment variables, dependencies, and commands needed to set up the application environment.
 
-##### Key Concepts:
+Key Concepts:
 
 - Containerization: The process of packaging an application and its dependencies into a container. This allows the application to run consistently across different environments, from development to production.
 - Layered File System: Docker uses a layered file system to optimize image builds and minimize storage space. Each instruction in a Dockerfile creates a new layer, making it possible to reuse existing layers when building new images.
 - Networking: Docker provides networking capabilities to enable communication between containers and other networked services. Users can create custom networks to isolate containers or connect them to external networks.
 - Volumes: Docker volumes provide persistent storage for containers. Volumes enable data to persist even after a container is stopped or deleted, making them suitable for storing application data, logs, and configuration files.
 
-##### Use Cases:
+Use Cases:
 
 - Application Deployment: Docker simplifies the deployment process by encapsulating applications and their dependencies into containers. This enables developers to deploy applications more efficiently and consistently across different environments.
 
@@ -221,7 +216,7 @@ The deployment unfolded in the following key steps:
 - 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
 
 
-##### Understanding Kubernetes components - the details.
+Kubernetes components - the details.
 
 Namespaces 
 
@@ -234,7 +229,13 @@ In this example, ![alt text](/img/image.png)
 
 by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
-###### Performance optimization is all about three things
+
+#### 3 stage CI/CD pipeline 
+
+![alt text](/img/cicd.png)
+
+
+##### Performance optimization is all about three things
 
 1. Cost Optimization
 2. Kubernetes Resource Optimization
