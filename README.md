@@ -137,14 +137,14 @@ Components
 
 CI/CD 
 
-![alt text](/images/cicd.png)
+![alt text](/img/cicd.png)
 
 ##### What is Docker and how does it work?
 
 
 The diagram below shows the architecture of Docker and how it works when we run “docker build”, “docker pull” and “docker run”. 
 
-![alt text](images/docker.png)
+![alt text](/img/docker.png)
  
 There are 3 components in Docker architecture: 
  
@@ -208,8 +208,6 @@ The deployment unfolded in the following key steps:
 
 ##### Understanding Kubernetes components - the details.
 
-
-
 ###### Namespaces 
 
 
@@ -217,7 +215,7 @@ In Kubernetes, #namespaces are the linchpin for organizing and securing resource
 
 Multi-tenancy where each customer is running the same instance of a vendor application, although the data being used in the app is completed isolated from other. 
 
-In this example, ![alt text](images/image.png)
+In this example, ![alt text](/img/image.png)
 
 by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
