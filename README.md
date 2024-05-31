@@ -18,12 +18,11 @@ Repo structure - There are variations of mono & poly (multi) repo structure. In 
 
 Why I chose a poly repo structure
 
-- Because I read these articles and many others not listed to inform. There are all opinionated so I am not going to further indulge your anxiety. I settled for a multi repo after
-asking the following questions.
+- Because I read these articles below. Very opinionated but offer great insights to the criteria to use if you want to choose.
 
 Questions you should ask yourself?
 
-QQ: Should you store your #kubernetes manifests in the same repo with your application code? If you DO store them in the same repo, why?
+QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
 QQ: Mono repo vs poly repo?
 
@@ -37,7 +36,7 @@ QQ: Branches or no branches for application release?
         - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
         - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-CI/CD & GitOps
+Why CI/CD with GitOps
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
 
