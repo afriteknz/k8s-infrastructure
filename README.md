@@ -1,11 +1,12 @@
 ### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
 
-Design/tools choices 
-- Multi repo - (Github)
-- GitOps - Pull-based CI/CD - (ArgoCD)
-- Github Actions 
--
+Important bits to keep in mind while going through this README and anyone who wants to reproduce this. 
 
+The solution uses the following tools
+
+- Multi repo - (Github - You can use Azure repos)
+- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins) 
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
