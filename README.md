@@ -11,37 +11,50 @@ The solution uses the following tools
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
-#EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-#k8s manifests - https://github.com/afriteknz/k8s-manifests 
-#Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
+- #EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+- #k8s manifests - https://github.com/afriteknz/k8s-manifests 
+- #Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 #### What inspired this repo 
 
-My journey into the world of containers and container orchestraters has been very tumultous. I started  (2010) my career in I.T in an organisation that fully embraced opensource, this meant that any solution to a problem was supposed to be solved using 
-open source solutions. It was a Java shop, I worked with 3 Java developers that developed applications that we hosted on either Apache tomcat or Glassfish.
+My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
  
-Challenges such as, 
+As a Linux Administrator responsible for deploying the code into dev, uat and production environments, I faced challenges such as, 
 
-- difficulty in mantaining similar environments across all developers 
+- Difficulty in mantaining similar environments across all developers 
 - Slow shipping of applications 
 - Development environments that differed from production environments 
-- Manualy code deployments 
+- Lack of automation, manual code deployments (Jenkins came around 2011)
 
-I was a Linux Administrator and I was responsible for addressing all the problems above. Unfortunately Docker wasnt a thing and the next best thing we had to solve the above problems was 
+Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely on more traditional approaches and tools.
 
-- interwoven bash scripts that were difficult to troubleshoot.
-- virtualisation that sort of helped create isolated environments. 
-- Intergrating Jenkins even though no one really understood how it worked completely.
+- Interwoven bash scripts that were difficult to troubleshoot.
+- Virtualization, which helped create isolated environments to some extent. 
 
-2023 I was involved in an AWS EKS project where the client wanted to design a multi account/cluster solution for the customers. I have a strong background in Linux admin with its intricasies (RHCE) and between 2010 & 2023, I had played around with Podman & Docker. 
+Time went by (2010 to todate), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs) and then 2022 I decided to Immigrate from Zimbabwe to New Zealand where I got a Job as a Senior Cloud Engineer(2022 todate). 
 
-Given the complexities of containerisation and kubernetes, I decided to document my experiences. This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly AKS and EKS.
+In my current role, I am more focused on assisting organisations 
 
-Ultimately, my goal isn't necessarily to master every aspect of Kubernetes. Instead, I aim to understand kubernetes core fundamentals enough to be able to host microservices developed in either Java, C#, PHP, Python and any of the morden languages.
+- Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
+- Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure and determining migration pathways using the cloud adoption framework.
 
-This practical approach guides my efforts, prioritizing operational effectiveness over exhaustive comprehension.
+Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure (Architect) and AWS (Architect) environments, made it easy for me to justify my involvement in the project.
 
-This write up will cover concepts below bulding up to a CI/CD pipeline (build, integrate and deploy an app).
+Given the complexities of that project with regards to 
+
+ - General architecture of the infrastructure [AWS EKS accounts, vpc architecture, secrets management etc]
+ - Containerisation of the application,
+ - Automation of application deployment,
+ - Automation of infrastructure deployment
+
+ I decided to document my experiences. 
+ 
+ 
+This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly any that involve AKS and EKS.
+
+Ultimately, my goal isn't to master and document every aspect of Kubernetes. Instead, I aim to share my understanding of Kubernetes core fundamentals, enabling me to host microservices developed in Java, C#, PHP, Python, and other modern languages. I want to assist anyone starting their journey with Kubernetes by providing practical insights and guidance.
+
+This write up will focus on developing a CI/CD pipeline (build, integrate and deploy an app).
 
     - Software development in python environment
     - Containerisation with Docker + Docker-Compose
@@ -59,7 +72,9 @@ This write up will cover concepts below bulding up to a CI/CD pipeline (build, i
     - Service mesh - Istitio
 
 
-#### Why I chose a poly repo structure
+#### Design Choices 
+
+Why I chose a poly repo structure
 
 - Because I read these articles below. Very opinionated but offer great insights to the criteria to use if you want to choose.
 
@@ -79,7 +94,7 @@ QQ: Branches or no branches for application release?
         - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
         - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-#### Why CI/CD with GitOps
+Why CI/CD with GitOps
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
 
@@ -208,7 +223,7 @@ The deployment unfolded in the following key steps:
 
 ##### Understanding Kubernetes components - the details.
 
-###### Namespaces 
+Namespaces 
 
 
 In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
