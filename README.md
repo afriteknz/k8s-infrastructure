@@ -4,11 +4,11 @@ Important bits to keep in mind while going through this README and anyone who wa
 
 The solution uses the following tools
 
-```
+<code>
 - Multi repo - (Github - You can use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
 - CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
-```
+</code>
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
 ```
