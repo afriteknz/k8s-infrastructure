@@ -31,7 +31,7 @@ Unfortunately, Docker wasn't available at the time (Docker came around 2013), an
 - Interwoven bash scripts that were difficult to troubleshoot.
 - Virtualization, which helped create isolated environments to some extent. 
 
-Time went by (2010 to todate), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs).
+Over the years (from 2010 to the present day), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs).
 
  In 2022, I made the decision to immigrate from Zimbabwe to New Zealand, where I secured a position as a Senior Cloud Engineer, and I have been in this role since then. 
 
@@ -73,20 +73,19 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
     - Service mesh - Istitio
 
 
-#### Design Choices 
+#### Design Considerations 
 
-Why I chose a poly repo structure
+Why I chose a poly repo structure 
 
-- Because I read these articles below. Very opinionated but offer great insights to the criteria to use if you want to choose.
+  QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
-Questions you should ask yourself?
+   - does the same team own both parts of the application/cluster.
 
-QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
+  QQ: Mono repo vs poly repo?
 
-QQ: Mono repo vs poly repo?
+  QQ: Branches or no branches for application release?
 
-QQ: Branches or no branches for application release?
-    - does the same team own both parts of the application/cluster. While you are thinking please read 
+    While you are thinking please read 
     - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
     - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
     - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
