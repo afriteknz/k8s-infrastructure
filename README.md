@@ -1,4 +1,10 @@
-### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension Kubernetes concepts, CI/CD, GitOps & Microservices applications. 
+### This repository serves as a documentation of my Kubernetes (EKS & AKS) journey, focusing on my comprehension Kubernetes concepts, CI/CD, GitOps & Microservices applications.
+
+Design/tools choices 
+- Multi repo - (Github)
+- GitOps - Pull-based CI/CD - (ArgoCD)
+- Github Actions 
+-
 
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
