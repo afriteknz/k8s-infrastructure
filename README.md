@@ -11,20 +11,25 @@ The solution uses the following tools
 ```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
+```
 - #EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - #k8s manifests - https://github.com/afriteknz/k8s-manifests 
 - #Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
+```
 #### What inspired this repo 
 
 My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
  
 As a Linux Administrator responsible for deploying the code into dev, uat and production environments, I faced challenges such as, 
 
+```
 - Difficulty in mantaining similar environments across all developers 
 - Slow shipping of applications 
 - Development environments that differed from production environments 
 - Lack of automation, manual code deployments (Jenkins came around 2011)
+
+```
 
 Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely on more traditional approaches and tools.
 
@@ -37,17 +42,24 @@ Over the years (from 2010 to the present day), I worked in various capacities as
 
 In my current role, my primary focus is on assisting organizations with,
 
+```
 - Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
 - Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure and determining migration pathways using the cloud adoption framework.
+
+```
 
 Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure (Architect) and AWS (Architect) environments, made it easy for me to justify my involvement in the project.
 
 Given the complexities of that project with regards to 
 
+```
+
  - General architecture of the infrastructure [AWS EKS accounts, vpc architecture, secrets management etc]
  - Containerisation of the application,
  - Automation of application deployment,
  - Automation of infrastructure deployment
+
+ ```
 
  I decided to document my experiences.  
  
