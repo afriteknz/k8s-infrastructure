@@ -4,17 +4,18 @@ Important bits to keep in mind while going through this README and anyone who wa
 
 The solution uses the following tools
 
-<code>
+```
 - Multi repo - (Github - You can use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
 - CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
-</code>
+```
 Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
 
 ```
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - k8s manifests - https://github.com/afriteknz/k8s-manifests 
-- Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
+- Applications repo. [Each application has its own repo and where it makes sense, 
+2 different microservices can be bundled together]
 
 ```
 #### What inspired this repo 
@@ -42,8 +43,10 @@ Over the years (from 2010 to the present day), I worked in various capacities as
 In my current role, my primary focus is on assisting organizations with,
 
 ```
-- Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
-- Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure and determining migration pathways using the cloud adoption framework.
+- Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones
+ to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
+- Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure 
+and determining migration pathways using the cloud adoption framework.
 
 ```
 
