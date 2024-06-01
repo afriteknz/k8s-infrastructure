@@ -1,22 +1,7 @@
 locals {
   infra_rg_name                 = "k8s-rg"
-  infra_nodes_rg_name           = "aks-poc-nodes"
+  infra_nodes_rg_name           = "k8s-nodes-rg"
   infra_kubernetes_cluster_name = "cluster-cubem"
-}
-
-provider "azurerm" {
-  features {}
-}
-
-terraform {
-  required_version = ">= 0.13"
-
-  required_providers {
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.7.0"
-    }
-  }
 }
 
 data "azurerm_kubernetes_cluster" "main" {
@@ -74,7 +59,7 @@ resource "kubernetes_secret" "argocd_repo_credentials" {
   type = "Opaque"
   data = {
     url           = "git@github.com:ORG"
-    sshPrivateKey = file("./files/githubSSHPrivateKey.key")
+    sshPrivateKey = file("values/githubSSHPrivateKey.key")
   }
 }
 
@@ -88,9 +73,7 @@ resource "helm_release" "argocd" {
   depends_on = [
     kubernetes_secret.argocd_repo_credentials,
   ]
-  values = [
-    file("./files/argocd-bootstrap-values.yaml"),
-  ]
+  values = [file("values/argocd.yaml")]
 }
 
 # The bootstrap application
