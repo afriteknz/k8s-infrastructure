@@ -90,15 +90,21 @@ resource "kubectl_manifest" "argocd_bootstrap" {
     }
 
     spec = {
-      project = "default"
+      project = "flask-apps"
       destination = {
-        namespace = "argocd"
-        name      = "in-cluster"
+        namespace = "default"
+        server    = "https://kubernetes.default.svc"
       }
       source = {
-        repoURL = "git@github.com:ORG.git"
-        path : "apps"
+        repoURL = "git@github.com/afriteknz/k8s-manifests.git"
+        path : "flask-app-v1-mfs"
         revision : "HEAD"
+      }
+      syncPolicy = {
+        automated = {
+          prune    = true
+          selfHeal = true
+        }
       }
     }
   })
