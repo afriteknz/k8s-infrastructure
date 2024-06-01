@@ -20,7 +20,8 @@ Repo structure - There are variations of mono & poly (multi) repo structure. In 
 
 ```
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-- k8s manifests - https://github.com/afriteknz/k8s-manifests 
+- k8s manifests - https://github.com/afriteknz/k8s-manifests
+- Argo GitOps terraform boostrap files for both EKS & AKS
 - Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 ```
