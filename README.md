@@ -1,6 +1,13 @@
 #### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
 
-Important bits to keep in mind while going through this README and anyone who wants to reproduce this. 
+Important bits to keep in mind while going through this README and anyone who wants to reproduce this setup. 
+
+1. Deploy either EKS or AKS using code in infrastructure-aks or infrastructure-eks - follow README.md file inside each folder.
+2. Deploy ArgoCD into the cluster
+3. Open ArgoCD and Configure your applications accordingly.
+4. Build , test and deploy
+5. Open URL **** 
+
 
 The solution uses the following tools
 
@@ -258,6 +265,17 @@ by changing the namespaces within the #Kubernetes manifest, different instances 
 #### 3 stage CI/CD pipeline 
 
 ![alt text](/img/cicd.png)
+
+
+#### GitOps Orchestration with ArgoCD
+
+ArgoCD takes over the responsibility of ensuring that the desired state of the applications aligns with the actual state of the cluster.
+
+    ArgoCD acts as a centralized controller, continuously watching the Git repository for updates to application manifests. When changes are detected, ArgoCD triggers the necessary actions to synchronize the cluster with the desired state, ensuring that applications are always deployed in the intended configuration.
+
+High Level Overview 
+
+![alt text](/img/gitOpsOverview.png)
 
 
 ##### Performance optimization is all about three things
