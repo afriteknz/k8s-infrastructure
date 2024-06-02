@@ -27,6 +27,9 @@ resource "azurerm_kubernetes_cluster" "k8s" {
   dns_prefix          = var.kubernetes_cluster_name
   node_resource_group = local.infra_nodes_rg_name
 
+  # For production change to "Standard" 
+  sku_tier = "Free"
+
 
   identity {
     type = "SystemAssigned"
