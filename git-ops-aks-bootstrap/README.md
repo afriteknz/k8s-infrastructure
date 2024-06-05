@@ -35,6 +35,11 @@ Get logs for all pods with a specific label
 
 Run this Argo boostrap code after connecting to the cluster
 
+Check Pods
+```kubectl get pods -n argocd```
+
+Check services in argocd namespace
+```kubectl get service -n argocd```
 
 Access The Argo CD API Server
 

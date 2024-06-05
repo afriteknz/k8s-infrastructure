@@ -58,54 +58,54 @@ resource "kubernetes_secret" "argocd_repo_credentials" {
   }
   type = "Opaque"
   data = {
-    url           = base64encode("git@github.com/afriteknz/k8s-manifests.git")
-    sshPrivateKey = base64encode(file("values/githubSSHPrivateKey.key"))
+    url           = "git@github.com/afriteknz/k8s-manifests.git"
+    sshPrivateKey = file("./values/githubSSHPrivateKey.key")
   }
 }
 
 resource "helm_release" "argocd" {
   name       = "argocd"
-  namespace  = "argocd"
+  namespace  = kubernetes_namespace.argocd.id
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
-  version    = "5.46.7"
+  version    = "6.7.11"
   skip_crds  = true
   depends_on = [
     kubernetes_secret.argocd_repo_credentials,
   ]
-  values = [file("values/argocd.yaml")]
+  values = [file("./values/argocd.yaml")]
 }
 
 # The bootstrap application
-# resource "kubectl_manifest" "argocd_bootstrap" {
-#   depends_on = [helm_release.argocd]
+resource "kubectl_manifest" "argocd_bootstrap" {
+  depends_on = [helm_release.argocd]
 
-#   yaml_body = yamlencode({
-#     apiVersion = "argoproj.io/v1alpha1"
-#     kind       = "Application"
+  yaml_body = yamlencode({
+    apiVersion = "argoproj.io/v1alpha1"
+    kind       = "Application"
 
-#     metadata = {
-#       name      = "bootstrap-${var.kubernetes_cluster_name}"
-#       namespace = "argocd"
-#     }
+    metadata = {
+      name      = "bootstrap-${var.kubernetes_cluster_name}"
+      namespace = "argocd"
+    }
 
-#     spec = {
-#       project = "flask-apps"
-#       destination = {
-#         namespace = "default"
-#         server    = "https://kubernetes.default.svc"
-#       }
-#       source = {
-#         repoURL = "git@github.com/afriteknz/k8s-manifests"
-#         path : "flask-app-v1-mfs"
-#         revision : "HEAD"
-#       }
-#       syncPolicy = {
-#         automated = {
-#           prune    = true
-#           selfHeal = true
-#         }
-#       }
-#     }
-#   })
-# }
+    spec = {
+      project = "flask-apps"
+      destination = {
+        namespace = "default"
+        server    = "https://kubernetes.default.svc" # In-cluster API server URL
+      }
+      source = {
+        repoURL = "git@github.com:afriteknz/k8s-manifests.git"
+        path : "flask-app-v3-mfs"
+        revision : "HEAD"
+      }
+      syncPolicy = {
+        automated = {
+          prune    = true
+          selfHeal = true
+        }
+      }
+    }
+  })
+}
