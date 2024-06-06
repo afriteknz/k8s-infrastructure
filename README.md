@@ -5,6 +5,7 @@ NB - Please note that this solution is based on Azure Kubernetes Service (AKS) a
 To reproduce this solution. 
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
+
 ```sdsd```
 ```sdsd```
 ```sdsd```
