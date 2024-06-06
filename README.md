@@ -1,12 +1,15 @@
 #### This repository serves as documentation of my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
 
-Important bits to keep in mind while going through this README and anyone who wants to reproduce this setup. 
+To reproduce this solution. 
 
-1. Deploy either EKS or AKS using code in infrastructure-aks or infrastructure-eks - follow README.md file inside each folder.
-2. Deploy ArgoCD into the cluster
+NB - Please note that this solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there may be slight variations in implementation across different Kubernetes environments.
+
+1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
+2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
 3. Open ArgoCD and Configure your applications accordingly.
 4. Build , test and deploy
 5. Open URL **** 
+
 
 
 The solution uses the following tools
@@ -168,7 +171,6 @@ Components
     - Azure Monitor helps you track performance, maintain security, and identify trends. Metrics obtained by Azure Monitor can be used by other resources and tools, such as Grafana.
 
 
-
 #### Docker - Where does docker fit in all this?
 
 
@@ -249,10 +251,9 @@ The deployment unfolded in the following key steps:
 
 ```
 
-#### Kubernetes components - the details.
+#### Kubernetes Concepts
 
 Namespaces 
-
 
 In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
 
@@ -262,6 +263,47 @@ In this example, ![alt text](/img/image.png)
 
 by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
+Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
+
+ClusterIP: Inside the Cluster Walls
+
+```At the foundation of Kubernetes services lies ClusterIP. As the default service type, ClusterIP provides internal communication between applications within the same cluster. Notably, ClusterIP services are not accessible from outside the cluster. However, there’s a twist — the Kubernetes proxy can come to the rescue.```
+
+Takeaways
+- To gain access to ClusterIP services, the Kubernetes proxy can be initiated using the command kubectl proxy --port=8080
+- Mostly used for debugging, internal communication, and selective access.
+
+NodePort: A Direct Connection
+
+```This service type exposes a specific port on all cluster nodes (VMs), effectively forwarding external traffic to the intended service.```
+
+While NodePort simplifies external exposure, it does have limitations:
+
+    Limited to one service per port.
+    Constrained port range (30000–32767).
+    Management of potential changes in Node/VM IP addresses.
+
+NodePort is a suitable choice for temporary applications, demos, or scenarios where constant availability isn’t a strict requirement.
+
+Takeaways
+- d
+- sd
+
+LoadBalancer: Bridging the Gap
+
+```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
+
+Takeaways
+- sds
+- sd
+
+Ingress: The Intelligent Path
+
+```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
+
+Takeaways
+- sd
+- sd
 
 #### 3 stage CI/CD pipeline 
 
