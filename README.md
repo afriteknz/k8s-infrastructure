@@ -6,9 +6,12 @@ To reproduce this solution.
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
 
-To reproduce this on your local machine (make sure you are already logged in to your Azure Tenant using azcli)
+ - I have created a github actions pipeline to deploy the infrastructure to Azure but if you want to 
+ 
+ - reproduce this on your local machine (make sure you are already logged in to your Azure Tenant using azcli)
 
- ```- cd infrastructure-aks/ 
+ ```
+ - cd infrastructure-aks/ 
  - terraform init
  - terraform plan
  - terraform apply --auto-approve
