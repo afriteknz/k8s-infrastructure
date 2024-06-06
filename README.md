@@ -5,9 +5,14 @@ NB - Please note that this solution is based on Azure Kubernetes Service (AKS) a
 To reproduce this solution. 
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
-- we
-- wew
-- wewe
+
+To reproduce this on your local machine (make sure you are already logged in to your Azure Tenant using azcli)
+
+ ```- cd infrastructure-aks/ 
+ - terraform init
+ - terraform plan
+ - terraform apply --auto-approve
+ ```
 
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
 3. Open ArgoCD and Configure your applications accordingly.
