@@ -2,36 +2,13 @@
 
 NB - Please note that this solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there may be slight variations in implementation across different Kubernetes environments.
 
-To reproduce this solution. 
+Steps to follow to reproduce.
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
-
- - I have created a github actions pipeline to deploy the infrastructure to Azure but if you want to 
- 
- - reproduce this on your local machine (make sure you are already logged in to your Azure Tenant using azcli)
-
- ```
- - cd infrastructure-aks/ 
- - terraform init
- - terraform plan
- - terraform apply --auto-approve
- ```
-
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
 3. Open ArgoCD and Configure your applications accordingly.
-4. Build , test and deploy
-5. Open URL **** 
 
-
-
-The solution uses the following tools
-
-```
-- Multi repo - (Github - You can use Azure repos)
-- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
-```
-Repo structure - There are variations of mono & poly (multi) repo structure. In this project, I adopted the Poly repo structure. 
+Repo structure - Poly repo. 
 
 ```
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
@@ -40,6 +17,15 @@ Repo structure - There are variations of mono & poly (multi) repo structure. In 
 - Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
 
 ```
+
+The solution uses the following tools
+
+```
+- Multi repo - (Github - You can use Azure repos)
+- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
+```
+
 #### What inspired this repo 
 
 My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
