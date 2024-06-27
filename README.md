@@ -308,7 +308,7 @@ Takeaways
 ![alt text](/img/cicd.png)
 
 
-#### GitOps Orchestration with ArgoCD
+#### Bootstrapping ArgoCD With Terraform
 
 ArgoCD takes over the responsibility of ensuring that the desired state of the applications aligns with the actual state of the cluster.
 
@@ -317,6 +317,36 @@ ArgoCD takes over the responsibility of ensuring that the desired state of the a
 High Level Overview 
 
 ![alt text](/img/gitOpsOverview.png)
+
+What is Bootstrapping?
+
+    Bootstrapping is to make your system ready by ensuring it loads your essential components
+    In Kubernetes, we have options to bootstrap the cluster with several examples:
+        Having ingress controller, prometheus operator, and telemetry collector
+        Having applications management / delivery tools installed like ArgoCD or FluxCD
+    In this case we want to bootstrap ArgoCD to the cluster, so that for all the remaining components can be managed using Application or ApplicationSet in ArgoCD
+
+
+Why Bootstrapping?
+
+    Bootstrapping will only contains the minimum essentials tools get installed
+    This will make the cluster management less painful
+    We can manage the essentials tools altogether with cluster provisioning definition
+    We can separate the other essentials tools management into different layer (for ArgoCD, using Application or ApplicationSet)
+
+
+How to Bootstrapping Kubernetes Cluster?
+
+    Terraform widely known tools to provisioning Kubernetes cluster
+    It has Helm provider support
+    Helm chart is versioned and more easier than dealing with plain manifests
+    We can leverage Terraform and Helm to bootstrap the cluster
+    So we can manage the cluster provisioning (using whatever your cloud platform is), and manage the essentials components (in this case ArgoCD)
+
+NB - Folders git-ops-aks-bootstrap and git-ops-eks-bootstrap contain terraform code to bootstrap the AKS/EKS clusters     respectively.
+
+
+
 
 
 ##### Performance optimization is all about three things
