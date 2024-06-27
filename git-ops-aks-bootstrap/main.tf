@@ -59,7 +59,7 @@ resource "kubernetes_secret" "argocd_repo_credentials" {
   type = "Opaque"
   data = {
     url           = "git@github.com/afriteknz/k8s-manifests.git"
-    sshPrivateKey = file("./values/githubSSHPrivateKey.key")
+    sshPrivateKey = file("./values/id_rsa")
   }
 }
 
