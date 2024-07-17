@@ -2,7 +2,7 @@
 
 NB - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
-Highlevel steps to follow to reproduce.
+Highlevel steps to reproduce this solution.
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
@@ -21,9 +21,9 @@ Repo structure - Poly repo.
 The solution uses the following tools
 
 ```
-- Multi repo - (Github - You can use Azure repos)
+- Multi repo - (Github - You can also use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can replace it with Azure DevOps or Jenkins)
+- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
 ```
 
 #### What inspired this repo 
@@ -39,7 +39,7 @@ As a Linux Administrator responsible for deploying the code into dev, uat and pr
 - Lack of automation, manual code deployments (Jenkins came around 2011)
 ```
 
-Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely on more traditional approaches and tools.
+Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely more on traditional approaches and tools.
 
 - Interwoven bash scripts that were difficult to troubleshoot.
 - Virtualization, which helped create isolated environments to some extent. 
@@ -58,7 +58,7 @@ and determining migration pathways using the cloud adoption framework.
 
 ```
 
-Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure (Architect) and AWS (Architect) environments, made it easy for me to justify my involvement in the project.
+Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure/AWS (Architect/Engineering) environments, made it easy for me to justify my involvement in the project.
 
 Given the complexities of that project with regards to 
 
