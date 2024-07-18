@@ -1,8 +1,33 @@
----
-global:
-  image:
-    tag: "v2.9.3"
-
+controller:
+  resources:
+    limits:
+      cpu: "100m"
+      memory: "128Mi"
+dex:
+  resources:
+    limits:
+      cpu: "10m"
+      memory: "32Mi"
+redis:
+  resources:
+    limits:
+      cpu: "10m"
+      memory: "32Mi"
+repoServer:
+  resources:
+    limits:
+      cpu: "1000m"
+      memory: "512Mi"
 server:
-  extraArgs:
-    - --insecure
+  resources:
+    limits:
+      cpu: "100m"
+      memory: "128Mi"
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: argocd.cubem.local
+
+configs:
+  params:
+    server.insecure: true
