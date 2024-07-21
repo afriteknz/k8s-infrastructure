@@ -77,29 +77,50 @@ resource "helm_release" "argocd" {
   values = [file("./values/argocd.yaml")]
 }
 
-resource "helm_release" "nginx_ingress" {
-  name       = "ingress-nginx"
-  chart      = "ingress-nginx"
-  repository = "https://kubernetes.github.io/ingress-nginx"
-  version    = "4.9.1"
-  namespace  = kubernetes_namespace.argocd.id
+# resource "helm_release" "nginx_ingress" {
+#   name       = "ingress-nginx"
+#   chart      = "ingress-nginx"
+#   repository = "https://kubernetes.github.io/ingress-nginx"
+#   version    = "4.9.1"
+#   namespace  = kubernetes_namespace.argocd.id
 
-  set {
-    name  = "controller.ingressClassResource.name"
-    value = "nginx"
-  }
-}
+#   set {
+#     name  = "controller.ingressClassResource.name"
+#     value = "nginx"
+#   }
+# }
 
-resource "null_resource" "password" {
-  depends_on = [helm_release.argocd]
+resource "terraform_data" "password" {
+  # Defines when the provisioner should be executed
+  # triggers_replace = [
+  #   # The provisioner is executed then the `id` of the EC2 instance changes
+  #   aws_instance.ec2_example.id
+  # ]
+
   provisioner "local-exec" {
     working_dir = "./argocd"
     command     = "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password} | base64 -d > argocd-login.txt"
   }
 }
 
+# resource "null_resource" "password" {
+#   depends_on = [helm_release.argocd]
+#   provisioner "local-exec" {
+#     working_dir = "./argocd"
+#     command     = "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password} | base64 -d >> argocd-login.txt"
+#   }
+# }
+
+# resource "null_resource" "password" {
+#   depends_on = [helm_release.argocd]
+#   provisioner "local-exec" {
+#     working_dir = "./argocd"
+#     command     = "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password} | base64 -d >> argocd-login.txt"
+#   }
+# }
+
 resource "null_resource" "del-argo-pass" {
-  depends_on = [null_resource.password]
+  depends_on = [terraform_data.password]
   provisioner "local-exec" {
     working_dir = "./argocd"
     command     = "kubectl -n argocd delete secret argocd-initial-admin-secret"
