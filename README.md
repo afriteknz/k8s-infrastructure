@@ -1,8 +1,8 @@
-#### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubenetes infrastructure & microservices applications.
+#### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubernetes infrastructure & microservices applications.
 
 NB - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
-Highlevel steps to reproduce this solution.
+To reproduce this setup, below are the highlevel steps.
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
@@ -24,7 +24,26 @@ The solution uses the following tools
 - Multi repo - (Github - You can also use Azure repos)
 - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
 - CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+
 ```
+
+#### Tools overview ?
+
+https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
+https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
+
+
+Q: When bootstrapping an EKS cluster, when should GitOps take over? 
+
+Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
+
+- Terraform creates cluster, worker pools, boostraps ArgoCD
+- Helm for deploying application workloads
+
+
+
+
+
 
 #### What inspired this repo 
 

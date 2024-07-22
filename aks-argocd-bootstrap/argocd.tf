@@ -91,6 +91,7 @@ resource "helm_release" "argocd" {
 # }
 
 resource "terraform_data" "password" {
+  depends_on = [helm_release.argocd]
   # Defines when the provisioner should be executed
   # triggers_replace = [
   #   # The provisioner is executed then the `id` of the EC2 instance changes
@@ -103,29 +104,25 @@ resource "terraform_data" "password" {
   }
 }
 
-# resource "null_resource" "password" {
-#   depends_on = [helm_release.argocd]
+
+# resource "terraform_data" "del-argo-pass" {
+#   depends_on = [terraform_data.password]
 #   provisioner "local-exec" {
 #     working_dir = "./argocd"
-#     command     = "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password} | base64 -d >> argocd-login.txt"
+#     command     = "kubectl -n argocd delete secret argocd-initial-admin-secret"
 #   }
 # }
 
-# resource "null_resource" "password" {
+
+
+# resource "terraform_data" "patch_argocd_server" {
 #   depends_on = [helm_release.argocd]
 #   provisioner "local-exec" {
 #     working_dir = "./argocd"
-#     command     = "kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath={.data.password} | base64 -d >> argocd-login.txt"
+#     command     = "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'"
 #   }
-# }
 
-resource "null_resource" "del-argo-pass" {
-  depends_on = [terraform_data.password]
-  provisioner "local-exec" {
-    working_dir = "./argocd"
-    command     = "kubectl -n argocd delete secret argocd-initial-admin-secret"
-  }
-}
+# }
 
 
 
