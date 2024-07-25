@@ -1,5 +1,7 @@
 #### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubernetes infrastructure & microservices applications.
 
+---
+
 NB - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
 To reproduce this setup, below are the highlevel steps.
@@ -7,6 +9,8 @@ To reproduce this setup, below are the highlevel steps.
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
 3. Open ArgoCD & Configure your applications accordingly.
+
+---
 
 Repo structure - Poly repo. 
 
@@ -27,6 +31,8 @@ The solution uses the following tools
 
 ```
 
+---
+
 #### Tools overview ?
 
 https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
@@ -40,10 +46,7 @@ Use Terraform for infra, GitOps for apps; clearer separation of concerns.
 - Terraform creates cluster, worker pools, boostraps ArgoCD
 - Helm for deploying application workloads
 
-
-
-
-
+---
 
 #### What inspired this repo 
 
@@ -89,6 +92,7 @@ Given the complexities of that project with regards to
  - Automation of infrastructure deployment
 
  ```
+---
 
  #### Documenting my experiences.  
  
@@ -113,10 +117,11 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
     - CNI plugins
     - Service mesh - Istitio
 
+---
 
 #### Design Considerations 
 
-**Why** I chose a poly repo structure
+**Why poly repo structure**
 
   QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
@@ -135,7 +140,8 @@ This write up will focus on developing a CI/CD pipeline (build, integrate and de
     - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-**Why** CI/CD with GitOps
+--- 
+**Why CI/CD with GitOps**
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
 
@@ -144,7 +150,19 @@ BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenari
 
 The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
 
-Architecture
+
+GitOps Architecture 
+
+- https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#
+- https://developers.redhat.com/e-books/path-gitops
+- https://developers.redhat.com/articles/2022/07/20/git-workflows-best-practices-gitops-deployments
+- https://akuity.io/blog/argo-cd-architectures-explained/
+- 
+
+---
+
+
+**Architecture**
 
 Option 1 - Push-based CI/CD approaches
 
@@ -187,6 +205,7 @@ Components
     - Argo CD is an open-source GitOps operator that integrates with GitHub and AKS. Argo CD supports continuous deployment (CD). Flux could have been used for this purpose, but Argo CD showcases how an app team might choose a separate tool for their specific application lifecycle concerns, compared with using the same tool that the cluster operators use for cluster management.
     - Azure Monitor helps you track performance, maintain security, and identify trends. Metrics obtained by Azure Monitor can be used by other resources and tools, such as Grafana.
 
+---
 
 #### Docker - Where does docker fit in all this?
 
@@ -248,6 +267,7 @@ Use Cases:
 - Development Environments: Docker can be used to create lightweight, reproducible development environments. Developers can use Docker to quickly set up development environments 
 
 ```
+---
 
 #### Cloud based Kubernetes (EKS/AKS) Architectures
 
@@ -267,6 +287,7 @@ The deployment unfolded in the following key steps:
 - 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
 
 ```
+---
 
 #### Kubernetes Concepts
 
@@ -303,29 +324,33 @@ While NodePort simplifies external exposure, it does have limitations:
 NodePort is a suitable choice for temporary applications, demos, or scenarios where constant availability isn’t a strict requirement.
 
 Takeaways
-- d
-- sd
+- 
+- 
 
 LoadBalancer: Bridging the Gap
 
 ```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
 
 Takeaways
-- sds
-- sd
+- 
+- 
 
 Ingress: The Intelligent Path
 
 ```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
 
 Takeaways
-- sd
-- sd
+- 
+- 
+
+
+---
 
 #### 3 stage CI/CD pipeline 
 
 ![alt text](/img/cicd.png)
 
+---
 
 #### Bootstrapping ArgoCD With Terraform
 
@@ -362,14 +387,14 @@ How to Bootstrapping Kubernetes Cluster?
     We can leverage Terraform and Helm to bootstrap the cluster
     So we can manage the cluster provisioning (using whatever your cloud platform is), and manage the essentials components (in this case ArgoCD)
 
-NB - Folders git-ops-aks-bootstrap and git-ops-eks-bootstrap contain terraform code to bootstrap the AKS/EKS clusters     respectively.
+NB - Folders aks-argocd-bootstrap and eks-argocd-bootstrap contain terraform code to bootstrap the AKS/EKS clusters respectively.
 
-
-
-
+--- 
 
 ##### Performance optimization is all about three things
 
 1. Cost Optimization
 2. Kubernetes Resource Optimization
 3. Worker Node Optimization
+
+---
