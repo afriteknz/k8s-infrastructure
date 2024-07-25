@@ -1,10 +1,10 @@
-#### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components and concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubernetes infrastructure & microservices applications.
+#### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components & concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubernetes infrastructure & microservices applications.
 
 ---
 
-NB - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
+Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
-To reproduce this setup, below are the highlevel steps.
+To reproduce this setup, follow these highlevel steps.
 
 1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
 2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
