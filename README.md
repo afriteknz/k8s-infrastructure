@@ -3,24 +3,22 @@
 
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
-Highlevel deployment steps.
+#### Highlevel deployment steps.
 
+```
 1. Deploy EKS/AKS Infrastructure using Github actions CI/CD pipelines inside the subfolders infrastructure-aks/infrastructure-eks. 
 2. Bootsrap ArgoCD with Terraform using Github actions CI/CD pipelines inside the subfolders aks-argocd-boostrap/eks-argocd-boostrap
 3. After step 2 completes, ArgoCD is now accessible and you can deploy your apps directly using the ArgoCD GUI or using the method defined in this README.md 
 
+```
 ---
 
-Repo structure - Poly repo. 
+#### GitOps Repo Architecture strategy/structure - Poly repo. 
 
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - k8s manifests - https://github.com/afriteknz/k8s-manifests
 - Argo GitOps terraform boostrap files for both EKS & AKS
-- Applications repo. [Each application has its own repo and where it makes sense, 2 different microservices can be bundled together]
-
-
-
-Tools used
+- Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
 
 ```
 - Multi repo - (Github - You can also use Azure repos)
@@ -158,7 +156,7 @@ GitOps Architecture
 ---
 
 
-**Architecture**
+**GitOps Architecture**
 
 Option 1 - Push-based CI/CD approaches
 
