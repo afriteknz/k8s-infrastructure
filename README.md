@@ -6,9 +6,12 @@ Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Ela
 
 To reproduce this setup, follow these highlevel steps.
 
-1. Deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks
-2. Deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
+1. Deploy Kubernetes Infrastructure using Github actions CI/CD pipelines
+   - deploy EKS or AKS using terraform code inside the subfolders infrastructure-aks/infrastructure-eks. 
+2. Bootsrap ArgoCD with Terraform using Github actions CI/CD pipelines 
+   - deploy ArgoCD into the EKS/AKS cluster by running the boostrap code inside the subfolders git-ops-aks-boostrap/git-ops-eks-boostrap
 3. Open ArgoCD & Configure your applications accordingly.
+   - sd
 
 ---
 
