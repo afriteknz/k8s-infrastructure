@@ -74,7 +74,22 @@ resource "helm_release" "argocd" {
   depends_on = [
     kubernetes_secret.argocd_repo_credentials,
   ]
-  values = [file("./values/argocd.yaml")]
+  values = [
+    file("./values/argocd.yaml"),
+    <<EOF
+server:
+  service:
+    type: LoadBalancer
+    ports:
+      http:
+        port: 80
+        targetPort: 8080
+      https:
+        port: 443
+        targetPort: 8080
+EOF
+
+  ]
 }
 
 # resource "helm_release" "nginx_ingress" {
@@ -104,25 +119,14 @@ resource "terraform_data" "password" {
   }
 }
 
+resource "terraform_data" "del-argo-pass" {
+  depends_on = [terraform_data.password]
+  provisioner "local-exec" {
+    working_dir = "./argocd"
+    command     = "kubectl -n argocd delete secret argocd-initial-admin-secret"
+  }
+}
 
-# resource "terraform_data" "del-argo-pass" {
-#   depends_on = [terraform_data.password]
-#   provisioner "local-exec" {
-#     working_dir = "./argocd"
-#     command     = "kubectl -n argocd delete secret argocd-initial-admin-secret"
-#   }
-# }
-
-
-
-# resource "terraform_data" "patch_argocd_server" {
-#   depends_on = [helm_release.argocd]
-#   provisioner "local-exec" {
-#     working_dir = "./argocd"
-#     command     = "kubectl patch svc argocd-server -n argocd -p '{\"spec\": {\"type\": \"LoadBalancer\"}}'"
-#   }
-
-# }
 
 
 
@@ -140,7 +144,7 @@ resource "kubectl_manifest" "argocd_bootstrap" {
     }
 
     spec = {
-      project = "flask-apps"
+      project = "default"
       destination = {
         namespace = "default"
         server    = "https://kubernetes.default.svc" # In-cluster API server URL
