@@ -143,7 +143,7 @@ BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenari
 The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
 
 
-GitOps Architecture 
+GitOps Architecture references
 
 - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#
 - https://developers.redhat.com/e-books/path-gitops
