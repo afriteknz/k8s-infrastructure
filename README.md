@@ -88,15 +88,13 @@ Given the complexities of that project with regards to
 
 ---
 
- #### Documenting my experiences.  
+ #### Hosting Applications on EKS/AKS
  
-This documentation will serve as a valuable reference for all my future projects involving Kubernetes, particularly any that involve AKS and EKS.
+Seperate repositories will store different Microservices applications in Java, C#, PHP, Python, and other modern languages. 
 
-Ultimately, my goal isn't to master and document every aspect of Kubernetes. Instead, I aim to share my understanding of Kubernetes core fundamentals, enabling me to host microservices developed in Java, C#, PHP, Python, and other modern languages. I want to assist anyone starting their journey with Kubernetes by providing practical insights and guidance.
+After deploying the EKS/AKS infrastructure, the next step is hosting the applications.
 
-This write up will focus on developing a CI/CD pipeline (build, integrate and deploy an app).
-
-    - Software development in python environment
+    - Application Development
     - Containerisation with Docker + Docker-Compose
     - Kubernetes (EKS/AKS)
     - Packaging with Helm
