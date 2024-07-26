@@ -1,4 +1,6 @@
-#### This repository serves as documentation to my Kubernetes (EKS & AKS) journey. It explores Kubernetes components & concepts, as well as CI/CD approaches (pull and push-based), in the context of managing the workflow for deploying kubernetes infrastructure & microservices applications.
+#### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
+- This repo will exlpore kubernetes components & concepts.
+- CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
 
 
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
@@ -124,6 +126,7 @@ After deploying the EKS/AKS infrastructure, the next step is hosting the applica
   QQ: Branches or no branches for application release?
 
     While you are thinking please read 
+    - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
     - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
     - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
     - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
@@ -281,7 +284,9 @@ The deployment unfolded in the following key steps:
 ```
 ---
 
-#### Kubernetes Concepts
+#### Kubernetes Architecture, Components and Concepts
+
+![alt text](/img/k8arch.png)
 
 Namespaces 
 
