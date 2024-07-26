@@ -13,11 +13,13 @@ Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Ela
 2. Bootsrap ArgoCD with Terraform using Github actions CI/CD pipelines inside the subfolders aks-argocd-boostrap/eks-argocd-boostrap
 3. After step 2 completes, ArgoCD is now accessible and you can deploy your apps directly using the ArgoCD GUI or using the method defined in this README.md 
 
+```
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - k8s manifests - https://github.com/afriteknz/k8s-manifests
 - Argo GitOps terraform boostrap files for both EKS & AKS
 - Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
 
+```
 ---
 #### What inspired this repo? 
 
