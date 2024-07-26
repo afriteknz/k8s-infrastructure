@@ -26,6 +26,7 @@ As a Linux Administrator responsible for deploying the code into dev, uat and pr
 - Slow shipping of applications 
 - Development environments that differed from production environments 
 - Lack of automation, manual code deployments (Jenkins came around 2011)
+
 ```
 
 Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely more on traditional approaches and tools.
@@ -83,7 +84,7 @@ Given the complexities of that project with regards to
 --- 
 
 
-#### GitOps Repo Architecture strategy/structure - Poly repo. 
+**GitOps Repo Architecture strategy/structure**
 
 Q: When bootstrapping an EKS cluster, when should GitOps take over? 
 
@@ -106,7 +107,7 @@ Use Terraform for infra, GitOps for apps; clearer separation of concerns.
 
 ```
 
-Tools overview
+Bootstrapping ArgoCD with terraform
 
 https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
 https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
