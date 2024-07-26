@@ -58,7 +58,41 @@ Given the complexities of that project with regards to
  - Automation of infrastructure deployment
 ---
 
+#### Design Choices/Considerations 
+
+**Why poly repo structure**
+
+  QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
+
+   - does the same team own both parts of the application/cluster.
+
+  QQ: Mono repo vs poly repo?
+
+  QQ: Branches or no branches for application release?
+
+    While you are thinking please read 
+    - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
+    - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
+    - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
+    - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
+    - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+    - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
+    - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
+    - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
+
+--- 
+
+
 #### GitOps Repo Architecture strategy/structure - Poly repo. 
+
+Q: When bootstrapping an EKS cluster, when should GitOps take over? 
+
+Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
+
+- Terraform creates cluster, worker pools, boostraps ArgoCD
+- Helm for deploying application workloads
+
+
 
 - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
 - k8s manifests - https://github.com/afriteknz/k8s-manifests
@@ -77,13 +111,6 @@ Tools overview
 https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
 https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
 
-
-Q: When bootstrapping an EKS cluster, when should GitOps take over? 
-
-Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
-
-- Terraform creates cluster, worker pools, boostraps ArgoCD
-- Helm for deploying application workloads
 
 ---
 
@@ -110,29 +137,7 @@ After deploying the EKS/AKS infrastructure, the next step is hosting the applica
 
 ---
 
-#### Design Considerations 
 
-**Why poly repo structure**
-
-  QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
-
-   - does the same team own both parts of the application/cluster.
-
-  QQ: Mono repo vs poly repo?
-
-  QQ: Branches or no branches for application release?
-
-    While you are thinking please read 
-    - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
-    - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
-    - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
-    - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
-    - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
-    - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
-    - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
-    - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
-
---- 
 **Why CI/CD with GitOps**
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
