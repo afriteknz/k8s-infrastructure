@@ -1,14 +1,12 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
-- This repo will exlpore kubernetes components & concepts.
-- CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
+- This repo explores kubernetes components & concepts, CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
 
+The following design choices were made for this solution after evaluating the trade-offs of different GitOps architecture patterns:
+- **Multi-repo**: GitHub (Azure Repos can also be used)
+- **GitOps**: Pull-based CI/CD using ArgoCD (FluxCD is another option)
+- **CI/CD**: GitHub Actions (alternatively, Azure DevOps or Jenkins can be used)
 
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
-
-Tools and workflows 
-- Multi repo - (Github - You can also use Azure repos)
-- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
 
 ---
 #### Highlevel deployment steps.
@@ -88,9 +86,10 @@ When bootstrapping an EKS cluster, when should GitOps take over?
     - Helm for deploying application workloads
     - Kustomize  ***
 
+
 ---
 
-Bootstrapping ArgoCD with terraform
+#### Bootstrapping ArgoCD with terraform
 
 https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
 https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
