@@ -69,18 +69,12 @@ Given the complexities of that project with regards to
 
 **Why poly repo structure**
 
-  Question: Should you store your Kubernetes manifests in the same repo with your Application code? If you want to store them in the same repo, why?
+Should you store your Kubernetes manifests in the same repo with your Application code? 
+- Explore mono repo vs poly repo strategies and the pros and cons of each.
+- Consider how you are going to separate Application & Infrastructure teams.
 
-   - does the same team own both parts of the application/cluster.
-
-  Question: Mono repo vs poly repo?
-
-  
-
-
-  Question: Branches or no branches for application release?
-
-    While you are thinking please read 
+Should you adopt a mono repo and use branches for application release?
+- Explore the following content.
     - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
     - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
     - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
@@ -90,11 +84,11 @@ Given the complexities of that project with regards to
     - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-
-  Question: When bootstrapping an EKS cluster, when should GitOps take over? 
-  Strategy: Use Terraform for infra, GitOps for apps; clearer separation of concerns
+When bootstrapping an EKS cluster, when should GitOps take over? 
+- Use Terraform for infra, GitOps for apps; clearer separation of concerns
     - Terraform creates cluster, worker pools, boostraps ArgoCD
     - Helm for deploying application workloads
+    - Kustomize  ***
 
 ---
 
