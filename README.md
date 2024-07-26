@@ -5,16 +5,15 @@
 
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
+---
 #### Highlevel deployment steps.
 
-```
+
 1. Deploy EKS/AKS Infrastructure using Github actions CI/CD pipelines inside the subfolders infrastructure-aks/infrastructure-eks. 
 2. Bootsrap ArgoCD with Terraform using Github actions CI/CD pipelines inside the subfolders aks-argocd-boostrap/eks-argocd-boostrap
 3. After step 2 completes, ArgoCD is now accessible and you can deploy your apps directly using the ArgoCD GUI or using the method defined in this README.md 
 
-```
 ---
-
 #### What inspired this repo? 
 
 My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
@@ -94,7 +93,8 @@ Given the complexities of that project with regards to
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
 
-  Question: When bootstrapping an EKS cluster, when should GitOps take over? - Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
+  Question: When bootstrapping an EKS cluster, when should GitOps take over? 
+  Strategy: Use Terraform for infra, GitOps for apps; clearer separation of concerns
     - Terraform creates cluster, worker pools, boostraps ArgoCD
     - Helm for deploying application workloads
 
