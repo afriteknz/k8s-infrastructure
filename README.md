@@ -5,9 +5,13 @@
 
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
+Tools and workflows 
+- Multi repo - (Github - You can also use Azure repos)
+- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+
 ---
 #### Highlevel deployment steps.
-
 
 1. Deploy EKS/AKS Infrastructure using Github actions CI/CD pipelines inside the subfolders infrastructure-aks/infrastructure-eks.
 2. Bootsrap ArgoCD with Terraform using Github actions CI/CD pipelines inside the subfolders aks-argocd-boostrap/eks-argocd-boostrap
@@ -61,19 +65,13 @@ Given the complexities of that project with regards to
 
 #### Design Choices/Considerations 
 
-**Tools, Processes and workflows**
-
-- Multi repo - (Github - You can also use Azure repos)
-- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
-
-**Why poly repo structure**
+**Multi/poly vs Mono repo structure**
 
 Should you store your Kubernetes manifests in the same repo with your Application code? 
 - Explore mono repo vs poly repo strategies and the pros and cons of each.
 - Consider how you are going to separate Application & Infrastructure teams.
 
-Should you adopt a mono repo and use branches for application release?
+Should you adopt a mono repo and use branches or a multi repo for application release?
 - Explore the following content.
     - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
     - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
