@@ -63,13 +63,26 @@ Given the complexities of that project with regards to
 
 **Why poly repo structure**
 
-  QQ: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
+  Question: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
 
    - does the same team own both parts of the application/cluster.
 
-  QQ: Mono repo vs poly repo?
+  Question: Mono repo vs poly repo?
 
-  QQ: Branches or no branches for application release?
+  
+    - EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+    - k8s manifests - https://github.com/afriteknz/k8s-manifests
+    - Argo GitOps terraform boostrap files for both EKS & AKS
+    - Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
+
+    ```
+    - Multi repo - (Github - You can also use Azure repos)
+    - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+    - CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+
+    ```
+
+  Question: Branches or no branches for application release?
 
     While you are thinking please read 
     - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
@@ -81,29 +94,10 @@ Given the complexities of that project with regards to
     - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
---- 
 
-
-**GitOps Repo Architecture strategy/structure**
-
-Q: When bootstrapping an EKS cluster, when should GitOps take over? 
-
-Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
-
-- Terraform creates cluster, worker pools, boostraps ArgoCD
-- Helm for deploying application workloads
-
-
-
-- EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-- k8s manifests - https://github.com/afriteknz/k8s-manifests
-- Argo GitOps terraform boostrap files for both EKS & AKS
-- Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
-
-```
-- Multi repo - (Github - You can also use Azure repos)
-- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+  Question: When bootstrapping an EKS cluster, when should GitOps take over? - Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
+    - Terraform creates cluster, worker pools, boostraps ArgoCD
+    - Helm for deploying application workloads
 
 ```
 
