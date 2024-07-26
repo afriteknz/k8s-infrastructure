@@ -99,7 +99,7 @@ Given the complexities of that project with regards to
     - Terraform creates cluster, worker pools, boostraps ArgoCD
     - Helm for deploying application workloads
 
-```
+---
 
 Bootstrapping ArgoCD with terraform
 
