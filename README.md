@@ -61,6 +61,12 @@ Given the complexities of that project with regards to
 
 #### Design Choices/Considerations 
 
+**Tools, Processes and workflows**
+
+- Multi repo - (Github - You can also use Azure repos)
+- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+
 **Why poly repo structure**
 
   Question: Should you store your #kubernetes manifests in the same repo with your #application code? If you want to store them in the same repo, why?
@@ -74,13 +80,6 @@ Given the complexities of that project with regards to
     - k8s manifests - https://github.com/afriteknz/k8s-manifests
     - Argo GitOps terraform boostrap files for both EKS & AKS
     - Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
-
-    ```
-    - Multi repo - (Github - You can also use Azure repos)
-    - GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-    - CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
-
-    ```
 
   Question: Branches or no branches for application release?
 
