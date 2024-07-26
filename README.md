@@ -3,14 +3,14 @@
 
 The following design choices were made after evaluating the trade-offs of different GitOps architecture patterns:
 
-*Terraform for infra, GitOps for apps; clearer separation of concerns*
-
 ```
+Terraform for infra, GitOps for apps; clearer separation of concerns
+```
+
 - Multi-repo: GitHub (Azure Repos can also be used)
 - GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
 - CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
 
-```
 Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
 ---
