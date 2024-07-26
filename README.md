@@ -15,37 +15,6 @@ Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Ela
 ```
 ---
 
-#### GitOps Repo Architecture strategy/structure - Poly repo. 
-
-- EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
-- k8s manifests - https://github.com/afriteknz/k8s-manifests
-- Argo GitOps terraform boostrap files for both EKS & AKS
-- Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
-
-```
-- Multi repo - (Github - You can also use Azure repos)
-- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
-- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
-
-```
-
----
-
-#### Tools overview
-
-https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
-https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
-
-
-Q: When bootstrapping an EKS cluster, when should GitOps take over? 
-
-Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
-
-- Terraform creates cluster, worker pools, boostraps ArgoCD
-- Helm for deploying application workloads
-
----
-
 #### What inspired this repo? 
 
 My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
@@ -87,10 +56,38 @@ Given the complexities of that project with regards to
  - Containerisation of the application,
  - Automation of application deployment,
  - Automation of infrastructure deployment
+---
+
+#### GitOps Repo Architecture strategy/structure - Poly repo. 
+
+- EKS & AKS infrastructure deployment using terraform - https://github.com/afriteknz/k8s-infrastructure (this repo)
+- k8s manifests - https://github.com/afriteknz/k8s-manifests
+- Argo GitOps terraform boostrap files for both EKS & AKS
+- Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
+
+```
+- Multi repo - (Github - You can also use Azure repos)
+- GitOps - Pull-based CI/CD - (ArgoCD - you can also use FluxCD for this)
+- CI/CD - (Github Actions  - you can also use Azure DevOps or Jenkins)
+
+```
+
+Tools overview
+
+https://www.reddit.com/r/kubernetes/comments/m96gx1/does_anyone_use_terraform_to_manage_kubernetes/
+https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cluster_when_should/
+
+
+Q: When bootstrapping an EKS cluster, when should GitOps take over? 
+
+Use Terraform for infra, GitOps for apps; clearer separation of concerns. 
+
+- Terraform creates cluster, worker pools, boostraps ArgoCD
+- Helm for deploying application workloads
 
 ---
 
- #### Running microservices applications on EKS/AKS
+#### Running microservices applications on EKS/AKS
  
 Seperate repositories will store different Microservices applications in Java, C#, PHP, Python, and other modern languages. 
 
