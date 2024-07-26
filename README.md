@@ -90,7 +90,7 @@ Given the complexities of that project with regards to
 
 ---
 
- #### Hosting Applications on EKS/AKS
+ #### Running microservices applications on EKS/AKS
  
 Seperate repositories will store different Microservices applications in Java, C#, PHP, Python, and other modern languages. 
 
@@ -155,7 +155,6 @@ GitOps Architecture references
 - 
 
 ---
-
 
 **GitOps Architecture**
 
