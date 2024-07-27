@@ -1,7 +1,7 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
 - This repo explores kubernetes components & concepts, CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
 
-The following design choices were made after evaluating the trade-offs of different GitOps architecture patterns:
+The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns:
 
 ```
 Terraform for infra, GitOps for apps; clearer separation of concerns
