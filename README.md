@@ -1,6 +1,8 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
 
-(Living document to be continously updated) This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
+*Under maintenance! documentation clean up and streamlining of the deployment process*
+
+This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
 
 While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
@@ -23,7 +25,7 @@ Other topics that will be explored.
 
 #### Design choices/tradeoffs
 
-The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns:
+The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps or ApplicationSets or Kustomize):
 
 ```
 Terraform for infra, GitOps for apps; clearer separation of concerns
@@ -53,7 +55,6 @@ As a Linux Administrator responsible for deploying the code into dev, uat and pr
 - Slow shipping of applications 
 - Development environments that differed from production environments 
 - Lack of automation, manual code deployments (Jenkins came around 2011)
-
 ```
 
 Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely more on traditional approaches and tools.
@@ -109,7 +110,7 @@ When bootstrapping an EKS cluster, when should GitOps take over?
 - Use Terraform for infra, GitOps for apps; clearer separation of concerns
     - Terraform creates cluster, worker pools, boostraps ArgoCD
     - Helm for deploying application workloads
-    - Kustomize  ***
+    - Kustomize (not currently using this)
 
 
 ---
@@ -122,7 +123,9 @@ https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cl
 
 ---
 
-#### Running microservices applications on EKS/AKS
+#### Deploying Applications and Manifests
+
+Application manifests, which define the desired state of the applications, are stored in a Git repository.Developers can commit changes to the manifests, triggering ArgoCD to synchronize the changes with the cluster.
  
 Prerequisites
 - AKS Cluster: Ensure the AKS/EKS cluster is up & running.
@@ -387,7 +390,7 @@ NB - Folders aks-argocd-bootstrap and eks-argocd-bootstrap contain terraform cod
 
 ### Kubernetes observability and Monitoring
 
-Graphana and promethius will be explored (to update this later)
+Graphana and prometheus will be explored (to update this later)
 
 
 ---
