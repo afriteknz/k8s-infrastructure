@@ -1,7 +1,9 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
-- This repo explores kubernetes components & concepts, CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
+- This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
 
-In this repo, I will explore 
+While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
+
+To summarise, we will explore 
 
 - Kubernetes (EKS/AKS) - Deployment using Terraform and Github actions CI/CD pipelines.
 - ArgoCD or FluxCD installation -   bootstrapping using Terraform.
@@ -9,7 +11,7 @@ In this repo, I will explore
 - Application deployment workflow when using ArgoCD.
 - Containerisation with Docker + Docker-Compose
 - Packaging with Helm
-- Kustomize - Where does it fit in.-
+- Kustomize - Where does it fit in.
 - Observability & Monitoring with Prometheus and Grafana
 
 Other topics that will be explored.
@@ -29,8 +31,6 @@ Terraform for infra, GitOps for apps; clearer separation of concerns
 - Multi-repo: GitHub (Azure Repos can also be used)
 - GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
 - CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
-
-Note** - This solution is based on Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS). While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
 ---
 #### Highlevel deployment steps.
@@ -123,13 +123,11 @@ https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cl
 
 #### Running microservices applications on EKS/AKS
  
-Seperate repositories will store different Microservices applications in Java, C#, PHP, Python, and other modern languages. 
-
 Prerequisites
 - AKS Cluster: Ensure the AKS/EKS cluster is up & running.
 - ArgoCD Installed: Ensure ArgoCD is installed on the AKS/EKS cluster.
 - kubectl: Make sure kubectl is configured to interact with the AKS/EKS cluster.
-- Git Repository: Have a Git repository where you can store the ArgoCD configuration files.
+- Git Repository: Have a Git repository where you can store the ArgoCD configuration files & use seperate repositories to store different Microservices applications in Java, C#, PHP, Python, & other modern languages.
 
 ---
 
