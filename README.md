@@ -23,6 +23,8 @@ Other topics that will be explored.
 - Plugins - CNI plugins , etc
 - Service mesh - Istitio
 
+---
+
 #### Design choices/tradeoffs
 
 The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps or ApplicationSets or Kustomize):
