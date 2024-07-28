@@ -33,12 +33,37 @@ The following design choices were made after evaluating the trade-offs of differ
 #### *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
 
 
-- Multi-repo: GitHub (Azure Repos can also be used)
+- Multi/poly or Mono repo - Multi-repo: GitHub (Azure Repos can also be used)
 - GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
 - CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
 - ArgoCD architecture - Single instance
 - Applications will be stored in different repositories. Assumption is that there are managed by different teams.
 - Application repos are isolated from Infrastructure repos. 
+
+Should you store your Kubernetes manifests in the same repo with your Application code? 
+- Explore mono repo vs poly repo strategies and the pros and cons of each.
+- Consider how you are going to separate Application & Infrastructure teams.
+
+*Streamline the below content*
+
+Should you adopt a mono repo and use branches or a multi repo for application release?
+- Explore the following content.
+    - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
+    - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
+    - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
+    - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
+    - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
+    - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
+    - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
+    - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
+
+When bootstrapping an EKS cluster, when should GitOps take over? 
+- Use Terraform for infra, GitOps for apps; clearer separation of concerns
+    - Terraform creates cluster, worker pools, boostraps ArgoCD
+    - Helm for deploying application workloads
+    - Kustomize (not currently using this)
+
+
 ---
 #### Highlevel deployment steps.
 
@@ -89,34 +114,6 @@ Given the complexities of that project with regards to
  - Containerisation of the application,
  - Automation of application deployment,
  - Automation of infrastructure deployment
----
-
-#### Design Choices/Considerations 
-
-**Multi/poly vs Mono repo structure**
-
-Should you store your Kubernetes manifests in the same repo with your Application code? 
-- Explore mono repo vs poly repo strategies and the pros and cons of each.
-- Consider how you are going to separate Application & Infrastructure teams.
-
-Should you adopt a mono repo and use branches or a multi repo for application release?
-- Explore the following content.
-    - https://cloudogu.com/en/blog/gitops-repository-patterns-part-1-introduction
-    - https://medium.com/@mattklein123/monorepos-please-dont-e9a279be011b
-    - https://medium.com/@adamhjk/monorepo-please-do-3657e08a4b70
-    - https://codefresh.io/blog/stop-using-branches-deploying-different-gitops-environments/
-    - https://codefresh.io/blog/how-to-model-your-gitops-environments-and-promote-releases-between-them/
-    - https://www.infracloud.io/blogs/monorepo-ci-cd-helm-kubernetes/
-    - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
-    - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
-
-When bootstrapping an EKS cluster, when should GitOps take over? 
-- Use Terraform for infra, GitOps for apps; clearer separation of concerns
-    - Terraform creates cluster, worker pools, boostraps ArgoCD
-    - Helm for deploying application workloads
-    - Kustomize (not currently using this)
-
-
 ---
 
 #### Bootstrapping ArgoCD with terraform
