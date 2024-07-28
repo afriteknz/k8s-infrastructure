@@ -1,6 +1,6 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
 
-This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
+(Living document to be continously updated) This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
 
 While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
 
@@ -385,7 +385,14 @@ NB - Folders aks-argocd-bootstrap and eks-argocd-bootstrap contain terraform cod
 
 --- 
 
-##### Performance optimization is all about three things
+### Kubernetes observability and Monitoring
+
+Graphana and promethius will be explored (to update this later)
+
+
+---
+
+#### Performance optimization is all about three things
 
 1. Cost Optimization
 2. Kubernetes Resource Optimization
