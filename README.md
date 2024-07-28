@@ -32,19 +32,9 @@ The following design choices were made after evaluating the trade-offs of differ
 
 #### *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
 
-
-- Multi/poly or Mono repo - Multi-repo: GitHub (Azure Repos can also be used)
-- GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
-- CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
-- ArgoCD architecture - Single instance
-- Applications will be stored in different repositories. Assumption is that there are managed by different teams.
-- Application repos are isolated from Infrastructure repos. 
-
-Should you store your Kubernetes manifests in the same repo with your Application code? 
-- Explore mono repo vs poly repo strategies and the pros and cons of each.
-- Consider how you are going to separate Application & Infrastructure teams.
-
-*Streamline the below content*
+When bootstrapping an EKS cluster, when should GitOps take over?
+- Helm for deploying application workloads
+- Kustomize (not currently using this)
 
 Should you adopt a mono repo and use branches or a multi repo for application release?
 - Explore the following content.
@@ -57,12 +47,52 @@ Should you adopt a mono repo and use branches or a multi repo for application re
     - https://argo-cd.readthedocs.io/en/stable/user-guide/best_practices/
     - https://developers.redhat.com/articles/2022/09/07/how-set-your-gitops-directory-structure#directory_structures
 
-When bootstrapping an EKS cluster, when should GitOps take over? 
-- Use Terraform for infra, GitOps for apps; clearer separation of concerns
-    - Terraform creates cluster, worker pools, boostraps ArgoCD
-    - Helm for deploying application workloads
-    - Kustomize (not currently using this)
+- Multi/poly or Mono repo - Multi-repo: GitHub (Azure Repos can also be used)
+- GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
+- CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
 
+
+
+Should you store your Kubernetes manifests in the same repo with your Application code? 
+- Explore mono repo vs poly repo strategies and the pros and cons of each.
+- Consider how you are going to separate Application & Infrastructure teams.
+- Applications will be stored in different repositories. Assumption is that there are managed by different teams.
+- Application repos are isolated from Infrastructure repos. 
+
+#### ArgoCD architecture considerations.
+
+**Centralised (Single management cluster to manager other clusters) vs Decentralised (ArgoCD Instance per kubernetes cluster?) cluster control  (staging and prod) ??**
+
+I want to create two kubernetes clusters. One for staging and one for prod. In my prod cluster I only want to deploy prod version of the apps. In the staging cluster I want dev and test environments. Would I use one ArgoCD instance per cluster or manage both clusters from a single ArgoCD instance (probably in the prod cluster)? Or should I create a third cluster just for argo? 
+
+The decision is largely depended on the number of clusters. If you have 2 or 3? Its probably easier to take care of 3 different argocd instances per cluster. If you have 100? You should probably centralize the management. There are pros and cons to each architecture.
+
+- Centralised management ArgoCD (hub & spoke): 
+
+Implement a single management cluster (hub & spoke) to manage all clusters, preventing confusion for developers with multiple instances. Use Terraform to provision the management cluster, ArgoCD, and all subsequent worker clusters, including repository and cluster credentials for ArgoCD. During the Helm installation step, set up an initial project and an ArgoCD Application pointing to a bootstrapping repository, utilizing the app-of-apps pattern.
+
+In the bootstrapping repository add ArgoCD Applications to install which in turn install the needed services and further setup. I make sure that the ordering of installation is correct with sync waves.
+
+This setup actually includes ArgoCD itself hence it can manage it's own installation. An ArgoCD upgrade can happen with a simple commit to the bootstrap repo.
+
+How I make this work? I make sure that my Terraform Helm installation is ignoring any further changes to ArgoCD so ArgoCD can freely manage itself without messing up my Terraform state. 
+
+- Decentralised ArgoCD (single): 
+sdfsdfsfds
+
+**Cluster boostrapping:** 
+Tooling is deployed in a unified way for every new cluster we create (namespaces, RBAC, service mesh, monitoring stack, OPA policies etc.)
+
+**ArgoCD pattern:** 
+Use ApplicationSets to support multi-cluster deployments. All clusters are labeled properly in an automated way so that Cluster Generators can be used.
+
+**Identity provider:** 
+Intergrate the identity provider with OIDC so that you can use user groups to authorize developer teams in their dedicated ArgoCD Projects. Groups of devs are managed by the Identity team.
+
+**Onboarding a new developer:** 
+Add a new item to a map in a helm chart. The rollout happens automatically to all of the target clusters by Argo.
+
+**Test ArgoCD upgrades:** we have integration tests which bring up a copy of our infra but on a smaller scale.
 
 ---
 #### Highlevel deployment steps.
