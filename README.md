@@ -1,4 +1,4 @@
-#### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
+#### Deployment of Kubernetes (EKS/AKS) Cluster with Terraform, boostrapping ArgoCD with app of apps.
 
 *Under maintenance! documentation clean up and streamlining of the deployment process*
 
