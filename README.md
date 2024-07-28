@@ -28,13 +28,15 @@ Other topics that will be explored.
 The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps or ApplicationSets or Kustomize):
 
 ```
-Terraform for infra, GitOps for apps; clearer separation of concerns
+- Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns
 ```
 
 - Multi-repo: GitHub (Azure Repos can also be used)
 - GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
 - CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
-
+- ArgoCD architecture - Single instance
+- Applications will be stored in different repositories. Assumption is that there are managed by different teams.
+- Application repos are isolated from Infrastructure repos. 
 ---
 #### Highlevel deployment steps.
 
