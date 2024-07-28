@@ -1,6 +1,25 @@
 #### Setting up & provisioning Kubernetes (EKS/AKS) Cluster with Terraform.
 - This repo explores kubernetes components & concepts, CI/CD approaches (pull and push-based) for deploying kubernetes resources & microservices applications.
 
+In this repo, I will explore 
+
+- Kubernetes (EKS/AKS) - Deployment using Terraform and Github actions CI/CD pipelines.
+- ArgoCD or FluxCD installation -   bootstrapping using Terraform.
+- GitOps with Argo CD - Apps and kubernetes infrastructure (Will explore flux later on)
+- Application deployment workflow when using ArgoCD.
+- Containerisation with Docker + Docker-Compose
+- Packaging with Helm
+- Kustomize - Where does it fit in.-
+- Observability & Monitoring with Prometheus and Grafana
+
+Other topics that will be explored.
+
+- Various types of supported Ingress controllers 
+- Plugins - CNI plugins , etc
+- Service mesh - Istitio
+
+#### Design choices/tradeoffs
+
 The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns:
 
 ```
@@ -106,22 +125,11 @@ https://www.reddit.com/r/Terraform/comments/1de6184/when_bootstrapping_an_eks_cl
  
 Seperate repositories will store different Microservices applications in Java, C#, PHP, Python, and other modern languages. 
 
-After deploying the EKS/AKS infrastructure, the next step is hosting the applications.
-
-    - Application Development
-    - Containerisation with Docker + Docker-Compose
-    - Kubernetes (EKS/AKS)
-    - Packaging with Helm
-    - CI/CD pipeline with GitHub actions
-    - GitOps with Argo CD (I will also look at flux later on)
-    - Observability & Monitoring with Prometheus and Grafana
-    - Infrastructure as Code with Terraform (deployment of the infrastructure)
-
-    Additionally, I will explore 
-
-    - Various types of supported Ingress controllers 
-    - CNI plugins
-    - Service mesh - Istitio
+Prerequisites
+- AKS Cluster: Ensure the AKS/EKS cluster is up & running.
+- ArgoCD Installed: Ensure ArgoCD is installed on the AKS/EKS cluster.
+- kubectl: Make sure kubectl is configured to interact with the AKS/EKS cluster.
+- Git Repository: Have a Git repository where you can store the ArgoCD configuration files.
 
 ---
 
