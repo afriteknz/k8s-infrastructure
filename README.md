@@ -101,6 +101,7 @@ Should you store your Kubernetes manifests in the same repo with your Applicatio
 - Applications will be stored in different repositories. Assumption is that there are managed by different teams.
 - Application repos are isolated from Infrastructure repos. 
 
+---
 #### ArgoCD architecture considerations.
 
 **Centralised (Single management cluster to manager other clusters) vs Decentralised (ArgoCD Instance per kubernetes cluster?) cluster control  (staging and prod) ??**
