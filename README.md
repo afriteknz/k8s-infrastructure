@@ -211,9 +211,34 @@ Prerequisites
 
 ![alt text](/img/k8arch.png)
 
-Namespaces 
+What is Kubernetes - an orchestration tool that allows you to orchestrate your applications on a set of nodes.
 
-In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
+What is a node - a physical or a virtual machine where our containerized applications will be running.
+
+Worker nodes - Nodes on which our applications are running.
+
+Worker node components 
+
+- A container runtime - software the enables the execution of containers.
+- kube-proxy - maintains a set of network rules to allow pods to communicate to each other and to be accessible by external users.
+- kubelet - agent that takes a set of pod configs and make sure that these pods are running, and healthy and they are configured as they are described in the pod configurations.
+
+
+Master node/Control plane - The master node is responsible for managing the entire cluster
+
+
+Master node components 
+
+- kube-apiserver - exposes the k8s API. 
+- kube-scheduler - watches for the newly created pods with no assigned node and selects a node for them to run on.
+- controller manager - runs a set  of controller processes.
+- etcd - highly-available key-value data store where the cluster data, nodes data.
+
+
+
+
+
+Namespaces - In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
 
 Multi-tenancy where each customer is running the same instance of a vendor application, although the data being used in the app is completed isolated from other. 
 
