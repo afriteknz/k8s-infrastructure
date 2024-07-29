@@ -8,6 +8,7 @@ While the core concepts are universally applicable, there are slight variations 
 
 To summarise, we will explore 
 
+```
 - Kubernetes (EKS/AKS) - Deployment using Terraform and Github actions CI/CD pipelines.
 - ArgoCD or FluxCD installation -   bootstrapping using Terraform.
 - GitOps with Argo CD - Apps and kubernetes infrastructure (Will explore flux later on)
@@ -23,6 +24,7 @@ Other topics that will be explored.
 - Plugins - CNI plugins , etc
 - Service mesh - Istitio
 
+```
 ---
 
 #### Design choices/tradeoffs
