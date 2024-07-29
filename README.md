@@ -64,14 +64,14 @@ Contrary to popular belief, developers do not want to be bothered with these typ
 
 *NB* - that it is possible to use a different templating system on these manifests than the applications of developers. For example, a very popular pattern is to use Helm for off-the-shelf applications, while choosing Kustomize for the applications created by your developers.
 
-For categories 3 and 4 manifests
+For categories 3 & 4 manifests
 
 - Developers don’t care about infrastructure manifests
 - These manifests do not change very often. Usually only when you upgrade the component in question or when you fine-tune the parameters.
 
 The key point here is that these 4 types of manifests have different requirements in several aspects such as the target audience and most importantly the change frequency. When we talk about “GitOps repository structure” you should always start by explaining which category of manifests we are talking about (if more than one).
 
--> Follow this url for a complete walkthrough https://codefresh.io/blog/how-to-structure-your-argo-cd-repositories-using-application-sets/
+For a complete walkthrough read- https://codefresh.io/blog/how-to-structure-your-argo-cd-repositories-using-application-sets/
 
 
 #### *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
