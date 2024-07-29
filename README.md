@@ -236,19 +236,11 @@ Master node components
 - controller manager - runs a set  of controller processes.
 - etcd - highly-available key-value data store where the cluster data, nodes data.
 
-
-
-
-
 Namespaces - In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
 
-Multi-tenancy where each customer is running the same instance of a vendor application, although the data being used in the app is completed isolated from other. 
+Multi-tenancy -  a design where different instances of an application can be deployed in different namespaces, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
-In this example, ![alt text](/img/image.png)
-
-by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
-
-Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
+#### Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
 
 ClusterIP: Inside the Cluster Walls
 
@@ -330,7 +322,6 @@ GitOps Architecture references
 - https://developers.redhat.com/e-books/path-gitops
 - https://developers.redhat.com/articles/2022/07/20/git-workflows-best-practices-gitops-deployments
 - https://akuity.io/blog/argo-cd-architectures-explained/
-- 
 
 ---
 
@@ -378,11 +369,6 @@ Components
     - Azure Monitor helps you track performance, maintain security, and identify trends. Metrics obtained by Azure Monitor can be used by other resources and tools, such as Grafana.
 
 ---
-
-
-
-
-
 
 #### Docker - Where does docker fit in all this?
 
