@@ -44,13 +44,13 @@ The solution will answer the following questions
 - The first category is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
 These manifests change very often as your developers deploy new releases and they are updated in a continuous manner usually in the following ways:
 
-- Updating the container image version on the deployment manifest (maybe 80% of cases)
-- Updating the container image AND some kind of configuration in a configmap or secret (maybe 15% of cases)
-- Updating only the configuration to fine-tune a business or technical property (maybe 5% of the cases)
+    - Updating the container image version on the deployment manifest (maybe 80% of cases)
+    - Updating the container image AND some kind of configuration in a configmap or secret (maybe 15% of cases)
+    - Updating only the configuration to fine-tune a business or technical property (maybe 5% of the cases)
 
 These manifests are very important to developers as they describe the state of any application to any of your organization environments (QA/Staging/Production etc).
 
-The second category is the Argo CD application manifests. These are essentially policy configurations referencing the source of truth for an application (the first type of manifests) and the destination and sync policies for that application. Remember that an Argo CD application is at its core a very simple link between a Git repo (that contains standard Kubernetes manifests) and a destination cluster. 
+- The second category is the Argo CD application manifests. These are essentially policy configurations referencing the source of truth for an application (the first type of manifests) and the destination and sync policies for that application. Remember that an Argo CD application is at its core a very simple link between a Git repo (that contains standard Kubernetes manifests) and a destination cluster. 
 
 Simple Argo CD application
 
@@ -58,7 +58,7 @@ Simple Argo CD application
 
 Contrary to popular belief, developers do not want to be bothered with these types of manifests. And even for operators, this type of manifest should be something that you set up once and then forget about it. Application Set manifests also fall in the same category.
 
-The third and fourth category is the same thing as the first and second, but this time we are talking about infrastructure applications (cert manager, nginx, coredns, prometheus etc) instead of in-house applications that your developers create.
+- The third and fourth category is the same thing as the first and second, but this time we are talking about infrastructure applications (cert manager, nginx, coredns, prometheus etc) instead of in-house applications that your developers create.
 
 *NB* - that it is possible to use a different templating system on these manifests than the applications of developers. For example, a very popular pattern is to use Helm for off-the-shelf applications, while choosing Kustomize for the applications created by your developers.
 
@@ -92,7 +92,6 @@ Should you adopt a mono repo and use branches or a multi repo for application re
 - Multi/poly or Mono repo - Multi-repo: GitHub (Azure Repos can also be used)
 - GitOps: Application and kubernetes resource deployment will use a pull-based CI/CD approach using ArgoCD (FluxCD is another option)
 - CI/CD: GitHub Actions for AKS/EKS deployment & ArgoCD boostrapping -  (alternatively, Azure DevOps or Jenkins can be used)
-
 
 
 Should you store your Kubernetes manifests in the same repo with your Application code? 
