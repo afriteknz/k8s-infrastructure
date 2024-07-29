@@ -264,24 +264,24 @@ While NodePort simplifies external exposure, it does have limitations:
 NodePort is a suitable choice for temporary applications, demos, or scenarios where constant availability isn’t a strict requirement.
 
 Takeaways
-- 
-- 
+- update here
+- update here
 
 **LoadBalancer: Bridging the Gap**
 
 ```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
 
 Takeaways
-- 
-- 
+- update here
+- update here
 
 **Ingress: The Intelligent Path**
 
 ```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
 
 Takeaways
-- 
-- 
+- update here
+- update here
 
 ---
 
