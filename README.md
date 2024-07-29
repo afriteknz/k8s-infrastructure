@@ -29,6 +29,8 @@ Other topics that will be explored.
 
 #### Design choices/tradeoffs
 
+*Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
+
 The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps, ApplicationSets & Kustomize):
 
 The solution will answer the following questions 
@@ -43,7 +45,7 @@ The solution will answer the following questions
 ```
 ![alt text](/img/manifesttypes.png)
 
-**The** first category is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
+**Category 1** is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
 These manifests change very often as your developers deploy new releases and they are updated in a continuous manner usually in the following ways:
 
 - Updating the container image version on the deployment manifest (maybe 80% of cases)
@@ -52,7 +54,7 @@ These manifests change very often as your developers deploy new releases and the
 
 These manifests are very important to developers as they describe the state of any application to any of your organization environments (QA/Staging/Production etc).
 
-**The** second category is the Argo CD application manifests. These are essentially policy configurations referencing the source of truth for an application (the first type of manifests) and the destination and sync policies for that application. Remember that an Argo CD application is at its core a very simple link between a Git repo (that contains standard Kubernetes manifests) and a destination cluster. 
+**Category 2** is the Argo CD application manifests. These are essentially policy configurations referencing the source of truth for an application (the first type of manifests) and the destination and sync policies for that application. Remember that an Argo CD application is at its core a very simple link between a Git repo (that contains standard Kubernetes manifests) and a destination cluster. 
 
 Simple Argo CD application
 
@@ -60,11 +62,11 @@ Simple Argo CD application
 
 Contrary to popular belief, developers do not want to be bothered with these types of manifests. And even for operators, this type of manifest should be something that you set up once and then forget about it. Application Set manifests also fall in the same category.
 
-**The** third and fourth category is the same thing as the first and second, but this time we are talking about infrastructure applications (cert manager, nginx, coredns, prometheus etc) instead of in-house applications that your developers create.
+**Category 3 & 4** is the same thing as the first and second, but this time we are talking about infrastructure applications (cert manager, nginx, coredns, prometheus etc) instead of in-house applications that your developers create.
 
 *NB* - that it is possible to use a different templating system on these manifests than the applications of developers. For example, a very popular pattern is to use Helm for off-the-shelf applications, while choosing Kustomize for the applications created by your developers.
 
-For categories 3 & 4 manifests
+For **Categories 3 & 4** manifests
 
 - Developers don’t care about infrastructure manifests
 - These manifests do not change very often. Usually only when you upgrade the component in question or when you fine-tune the parameters.
@@ -74,7 +76,6 @@ The key point here is that these 4 types of manifests have different requirement
 For a complete walkthrough read- https://codefresh.io/blog/how-to-structure-your-argo-cd-repositories-using-application-sets/
 
 
-#### *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
 
 When bootstrapping an EKS cluster, when should GitOps take over?
 - Helm for deploying application workloads
@@ -100,9 +101,10 @@ Should you store your Kubernetes manifests in the same repo with your Applicatio
 - Explore mono repo vs poly repo strategies and the pros and cons of each.
 - Consider how you are going to separate Application & Infrastructure teams.
 - Applications will be stored in different repositories. Assumption is that there are managed by different teams.
-- Application repos are isolated from Infrastructure repos. 
+- Application repos are isolated from Infrastructure repos.
 
 ---
+
 #### ArgoCD architecture considerations.
 
 **Centralised (Single management cluster to manager other clusters) vs Decentralised (ArgoCD Instance per kubernetes cluster?) cluster control  (staging and prod) ??**
