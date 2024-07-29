@@ -213,36 +213,35 @@ Prerequisites
 
 ![alt text](/img/k8arch.png)
 
-What is Kubernetes - an orchestration tool that allows you to orchestrate your applications on a set of nodes.
+**Kubernetes** - an orchestration tool that allows you to orchestrate your applications on a set of nodes.
 
-What is a node - a physical or a virtual machine where our containerized applications will be running.
+**Node** - a physical or a virtual machine where our containerized applications will be running.
 
-Worker nodes - Nodes on which our applications are running.
+**Worker nodes** - Nodes on which our applications are running.
 
-Worker node components 
+**Worker node components** 
 
 - A container runtime - software the enables the execution of containers.
 - kube-proxy - maintains a set of network rules to allow pods to communicate to each other and to be accessible by external users.
 - kubelet - agent that takes a set of pod configs and make sure that these pods are running, and healthy and they are configured as they are described in the pod configurations.
 
 
-Master node/Control plane - The master node is responsible for managing the entire cluster
+**Master node/Control plane** - The master node is responsible for managing the entire cluster
 
-
-Master node components 
+**Master node components** 
 
 - kube-apiserver - exposes the k8s API. 
 - kube-scheduler - watches for the newly created pods with no assigned node and selects a node for them to run on.
 - controller manager - runs a set  of controller processes.
 - etcd - highly-available key-value data store where the cluster data, nodes data.
 
-Namespaces - In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
+**Namespaces** - In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
 
-Multi-tenancy -  a design where different instances of an application can be deployed in different namespaces, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
+**Multi-tenancy** -  a design where different instances of an application can be deployed in different namespaces, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
 
 #### Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
 
-ClusterIP: Inside the Cluster Walls
+**ClusterIP: Inside the Cluster Walls**
 
 ```At the foundation of Kubernetes services lies ClusterIP. As the default service type, ClusterIP provides internal communication between applications within the same cluster. Notably, ClusterIP services are not accessible from outside the cluster. However, there’s a twist — the Kubernetes proxy can come to the rescue.```
 
@@ -250,7 +249,7 @@ Takeaways
 - To gain access to ClusterIP services, the Kubernetes proxy can be initiated using the command kubectl proxy --port=8080
 - Mostly used for debugging, internal communication, and selective access.
 
-NodePort: A Direct Connection
+**NodePort: A Direct Connection**
 
 ```This service type exposes a specific port on all cluster nodes (VMs), effectively forwarding external traffic to the intended service.```
 
@@ -266,7 +265,7 @@ Takeaways
 - 
 - 
 
-LoadBalancer: Bridging the Gap
+**LoadBalancer: Bridging the Gap**
 
 ```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
 
@@ -274,14 +273,13 @@ Takeaways
 - 
 - 
 
-Ingress: The Intelligent Path
+**Ingress: The Intelligent Path**
 
 ```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
 
 Takeaways
 - 
 - 
-
 
 ---
 
@@ -306,12 +304,11 @@ The deployment unfolded in the following key steps:
 ```
 ---
 
-**Why CI/CD with GitOps**
+#### CI/CD with GitOps
 
 GitOps is an operating model for cloud-native applications that stores application and declarative infrastructure code in Git to be used as the source of truth for automated continuous delivery. With GitOps, you describe the desired state of your entire system in a git repository, and a GitOps operator deploys it to your environment, which is often a Kubernetes cluster. For more information 
 
-BLUEPRINT - https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks
-
+Blueprint - https://learn.microsoft.com/en-us/azure/architecture/example-scenario/gitops-aks/gitops-blueprint-aks
 
 The example scenario in this article is applicable to businesses that want to modernize end-to-end application development by using containers, continuous integration (CI) for build, and GitOps for continuous deployment (CD). In this scenario, a Flask app is used as an example. This web app consists of a front-end written using Python and the Flask framework.
 
@@ -325,9 +322,9 @@ GitOps Architecture references
 
 ---
 
-**GitOps Architecture**
+#### GitOps Architecture
 
-Option 1 - Push-based CI/CD approaches
+**Option 1 - Push-based CI/CD approaches**
 
 ![alt text](/img/ci-cd-gitops-github-actions-aks-push.png)
 
@@ -343,7 +340,7 @@ This scenario covers a push-based DevOps pipeline for a two-tier web application
     3 - GitHub Actions builds a container image from the app code and pushes the container image to Azure Container or Docker Registry.
     4 - A GitHub Actions job deploys, or pushes, the app, as described in the manifest files, to the Azure Kubernetes Service (AKS) cluster using kubectl or the Deploy to Kubernetes cluster action.
 
-Option 2: Pull-based CI/CD (GitOps)
+**Option 2: Pull-based CI/CD (GitOps)**
 
 ![alt text](/img/ci-cd-gitops-github-actions-aks-pull.png)
 
@@ -372,7 +369,6 @@ Components
 
 #### Docker - Where does docker fit in all this?
 
-
 The diagram below shows the architecture of Docker and how it works when we run “docker build”, “docker pull” and “docker run”. 
 
 ![alt text](/img/docker.png)
@@ -395,41 +391,29 @@ Let’s take the “docker run” command as an example.
 
 Docker is a platform that enables developers to build, ship, and run applications in containers. Containers are lightweight, portable, and self-sufficient environments that encapsulate all the dependencies required to run an application.
 
-Key Components:
-
-```
+**Key Components:**
 
 - Docker Engine: The core component of Docker, responsible for building, running, and managing containers. It consists of:
+    - Docker Daemon: The background process that manages containers, images, networks, and volumes.
+    - Docker CLI: The command-line interface used to interact with Docker Daemon.
+    - Images: Read-only templates that contain the application code, runtime, libraries, dependencies, and other files required for the application to run.
+    - Containers: Runnable instances of Docker images. Containers isolate the application and its dependencies from the underlying infrastructure, ensuring consistency across different environments.
+    - Dockerfile: A text file that contains instructions for building Docker images. It specifies the base image, environment variables, dependencies, and commands needed to set up the application environment.
 
-- Docker Daemon: The background process that manages containers, images, networks, and volumes.
-- Docker CLI: The command-line interface used to interact with Docker Daemon.
-- Images: Read-only templates that contain the application code, runtime, libraries, dependencies, and other files required for the application to run.
-- Containers: Runnable instances of Docker images. Containers isolate the application and its dependencies from the underlying infrastructure, ensuring consistency across different environments.
-- Dockerfile: A text file that contains instructions for building Docker images. It specifies the base image, environment variables, dependencies, and commands needed to set up the application environment.
-
-```
-
-Key Concepts:
-
-```
+**Key Concepts:**
 
 - Containerization: The process of packaging an application and its dependencies into a container. This allows the application to run consistently across different environments, from development to production.
 - Layered File System: Docker uses a layered file system to optimize image builds and minimize storage space. Each instruction in a Dockerfile creates a new layer, making it possible to reuse existing layers when building new images.
 - Networking: Docker provides networking capabilities to enable communication between containers and other networked services. Users can create custom networks to isolate containers or connect them to external networks.
 - Volumes: Docker volumes provide persistent storage for containers. Volumes enable data to persist even after a container is stopped or deleted, making them suitable for storing application data, logs, and configuration files.
 
-```
-
-Use Cases:
-
-```
+**Use Cases:**
 
 - Application Deployment: Docker simplifies the deployment process by encapsulating applications and their dependencies into containers. This enables developers to deploy applications more efficiently and consistently across different environments.
 - Microservices Architecture: Docker is well-suited for building and deploying microservices-based applications. Each microservice can be packaged into a separate container, allowing for better scalability, isolation, and maintainability.
 - Continuous Integration/Continuous Deployment (CI/CD): Docker facilitates the adoption of CI/CD practices by providing a consistent environment for building, testing, and deploying applications. Docker images can be automatically built, tested, and deployed using CI/CD pipelines.
 - Development Environments: Docker can be used to create lightweight, reproducible development environments. Developers can use Docker to quickly set up development environments 
 
-```
 ---
 
 #### 3 stage CI/CD pipeline 
@@ -448,7 +432,7 @@ High Level Overview
 
 ![alt text](/img/gitOpsOverview.png)
 
-What is Bootstrapping?
+**What is Bootstrapping?**
 
     Bootstrapping is to make your system ready by ensuring it loads your essential components
     In Kubernetes, we have options to bootstrap the cluster with several examples:
@@ -457,7 +441,7 @@ What is Bootstrapping?
     In this case we want to bootstrap ArgoCD to the cluster, so that for all the remaining components can be managed using Application or ApplicationSet in ArgoCD
 
 
-Why Bootstrapping?
+**Why Bootstrapping?**
 
     Bootstrapping will only contains the minimum essentials tools get installed
     This will make the cluster management less painful
@@ -465,7 +449,7 @@ Why Bootstrapping?
     We can separate the other essentials tools management into different layer (for ArgoCD, using Application or ApplicationSet)
 
 
-How to Bootstrapping Kubernetes Cluster?
+**How to Bootstrap a Kubernetes Cluster?**
 
     Terraform widely known tools to provisioning Kubernetes cluster
     It has Helm provider support
