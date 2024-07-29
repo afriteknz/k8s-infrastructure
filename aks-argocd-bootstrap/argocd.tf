@@ -92,18 +92,6 @@ EOF
   ]
 }
 
-# resource "helm_release" "nginx_ingress" {
-#   name       = "ingress-nginx"
-#   chart      = "ingress-nginx"
-#   repository = "https://kubernetes.github.io/ingress-nginx"
-#   version    = "4.9.1"
-#   namespace  = kubernetes_namespace.argocd.id
-
-#   set {
-#     name  = "controller.ingressClassResource.name"
-#     value = "nginx"
-#   }
-# }
 
 resource "terraform_data" "password" {
   depends_on = [helm_release.argocd]

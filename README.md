@@ -27,7 +27,46 @@ Other topics that will be explored.
 
 #### Design choices/tradeoffs
 
-The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps or ApplicationSets or Kustomize):
+The following design choices were made after evaluating the trade-offs of different GitOps architecture/ArgoCD deployment patterns (App of Apps, ApplicationSets & Kustomize):
+
+The solution will answer the following questions 
+
+- 1️⃣ Where to put the Argo CD application manifests
+- 2️⃣ How to work with multiple teams/clusters/applications
+- 3️⃣ How to employ Application Sets for easier management
+- 4️⃣ How to split your GitOps repositories instead of using a monorepo
+
+![alt text](/img/manifesttypes.png)
+
+- The first category is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
+These manifests change very often as your developers deploy new releases and they are updated in a continuous manner usually in the following ways:
+
+- Updating the container image version on the deployment manifest (maybe 80% of cases)
+- Updating the container image AND some kind of configuration in a configmap or secret (maybe 15% of cases)
+- Updating only the configuration to fine-tune a business or technical property (maybe 5% of the cases)
+
+These manifests are very important to developers as they describe the state of any application to any of your organization environments (QA/Staging/Production etc).
+
+The second category is the Argo CD application manifests. These are essentially policy configurations referencing the source of truth for an application (the first type of manifests) and the destination and sync policies for that application. Remember that an Argo CD application is at its core a very simple link between a Git repo (that contains standard Kubernetes manifests) and a destination cluster. 
+
+Simple Argo CD application
+
+![alt text](/img/simpleArgoApp.png)
+
+Contrary to popular belief, developers do not want to be bothered with these types of manifests. And even for operators, this type of manifest should be something that you set up once and then forget about it. Application Set manifests also fall in the same category.
+
+The third and fourth category is the same thing as the first and second, but this time we are talking about infrastructure applications (cert manager, nginx, coredns, prometheus etc) instead of in-house applications that your developers create.
+
+*NB* - that it is possible to use a different templating system on these manifests than the applications of developers. For example, a very popular pattern is to use Helm for off-the-shelf applications, while choosing Kustomize for the applications created by your developers.
+
+For categories 3 and 4 manifests
+
+- Developers don’t care about infrastructure manifests
+- These manifests do not change very often. Usually only when you upgrade the component in question or when you fine-tune the parameters.
+
+The key point here is that these 4 types of manifests have different requirements in several aspects such as the target audience and most importantly the change frequency. When we talk about “GitOps repository structure” you should always start by explaining which category of manifests we are talking about (if more than one).
+
+-> Follow this url for a complete walkthrough https://codefresh.io/blog/how-to-structure-your-argo-cd-repositories-using-application-sets/
 
 
 #### *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
@@ -165,7 +204,85 @@ Prerequisites
 - Git Repository: Have a Git repository where you can store the ArgoCD configuration files & use seperate repositories to store different Microservices applications in Java, C#, PHP, Python, & other modern languages.
 
 ---
+#### Kubernetes Architecture, Components and Concepts
 
+![alt text](/img/k8arch.png)
+
+Namespaces 
+
+In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
+
+Multi-tenancy where each customer is running the same instance of a vendor application, although the data being used in the app is completed isolated from other. 
+
+In this example, ![alt text](/img/image.png)
+
+by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
+
+Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
+
+ClusterIP: Inside the Cluster Walls
+
+```At the foundation of Kubernetes services lies ClusterIP. As the default service type, ClusterIP provides internal communication between applications within the same cluster. Notably, ClusterIP services are not accessible from outside the cluster. However, there’s a twist — the Kubernetes proxy can come to the rescue.```
+
+Takeaways
+- To gain access to ClusterIP services, the Kubernetes proxy can be initiated using the command kubectl proxy --port=8080
+- Mostly used for debugging, internal communication, and selective access.
+
+NodePort: A Direct Connection
+
+```This service type exposes a specific port on all cluster nodes (VMs), effectively forwarding external traffic to the intended service.```
+
+While NodePort simplifies external exposure, it does have limitations:
+
+    Limited to one service per port.
+    Constrained port range (30000–32767).
+    Management of potential changes in Node/VM IP addresses.
+
+NodePort is a suitable choice for temporary applications, demos, or scenarios where constant availability isn’t a strict requirement.
+
+Takeaways
+- 
+- 
+
+LoadBalancer: Bridging the Gap
+
+```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
+
+Takeaways
+- 
+- 
+
+Ingress: The Intelligent Path
+
+```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
+
+Takeaways
+- 
+- 
+
+
+---
+
+
+#### Cloud based Kubernetes (EKS/AKS) Architectures
+
+- Master nodes for control plane operations
+- Worker nodes for executing application workloads
+
+
+Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
+
+In this project, I focused on automating the deployment of various resources to support the AKS cluster enhancing security and isolating network resources using a Service Principal. 
+
+The deployment unfolded in the following key steps:
+```
+- 1️⃣ Virtual Network Creation: A secure space for hosting the AKS cluster, ensuring isolation from other network resources.
+- 2️⃣ Azure Container Registry: Ensuring secure and private container image management.
+- 3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
+- 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
+
+```
+---
 
 **Why CI/CD with GitOps**
 
@@ -232,84 +349,9 @@ Components
 
 ---
 
-#### Cloud based Kubernetes (EKS/AKS) Architectures
-
-- Master nodes for control plane operations
-- Worker nodes for executing application workloads
 
 
-Leveraging Terraform to automate the provisioning of an Azure Kubernetes Service (AKS) cluster! 🌐💡
 
-In this project, I focused on automating the deployment of various resources to support the AKS cluster enhancing security and isolating network resources using a Service Principal. 
-
-The deployment unfolded in the following key steps:
-```
-- 1️⃣ Virtual Network Creation: A secure space for hosting the AKS cluster, ensuring isolation from other network resources.
-- 2️⃣ Azure Container Registry: Ensuring secure and private container image management.
-- 3️⃣ Azure Key Vault: A centralized vault to securely store sensitive information like client secrets.
-- 4️⃣ AKS Cluster Setup: Configuration of nodes for running containerized applications, with specifications defined using 
-
-```
----
-
-#### Kubernetes Architecture, Components and Concepts
-
-![alt text](/img/k8arch.png)
-
-Namespaces 
-
-In Kubernetes, #namespaces are the linchpin for organizing and securing resources within a unified cluster, crucial for upholding structure and safeguarding data in multi-tenancy setups.
-
-Multi-tenancy where each customer is running the same instance of a vendor application, although the data being used in the app is completed isolated from other. 
-
-In this example, ![alt text](/img/image.png)
-
-by changing the namespaces within the #Kubernetes manifest, different instances of an application can be deployed, ensuring that each tenant operates within their own isolated environment or domain, effectively managing resources and maintaining security in a multi-tenancy setup.
-
-Exposing your microservices to external traffic – ClusterIP vs NodePort vs LoadBalancer vs Ingress
-
-ClusterIP: Inside the Cluster Walls
-
-```At the foundation of Kubernetes services lies ClusterIP. As the default service type, ClusterIP provides internal communication between applications within the same cluster. Notably, ClusterIP services are not accessible from outside the cluster. However, there’s a twist — the Kubernetes proxy can come to the rescue.```
-
-Takeaways
-- To gain access to ClusterIP services, the Kubernetes proxy can be initiated using the command kubectl proxy --port=8080
-- Mostly used for debugging, internal communication, and selective access.
-
-NodePort: A Direct Connection
-
-```This service type exposes a specific port on all cluster nodes (VMs), effectively forwarding external traffic to the intended service.```
-
-While NodePort simplifies external exposure, it does have limitations:
-
-    Limited to one service per port.
-    Constrained port range (30000–32767).
-    Management of potential changes in Node/VM IP addresses.
-
-NodePort is a suitable choice for temporary applications, demos, or scenarios where constant availability isn’t a strict requirement.
-
-Takeaways
-- 
-- 
-
-LoadBalancer: Bridging the Gap
-
-```LoadBalancer shines as the standard method for direct service exposure. Traffic on the specified port flows seamlessly to the service, accommodating a range of protocols including HTTP, TCP, UDP, Websockets, and gRPC. However, convenience comes at a cost: Each LoadBalancer-exposed service is assigned a unique IP address, which can lead to increased expenses.```
-
-Takeaways
-- 
-- 
-
-Ingress: The Intelligent Path
-
-```Ingress takes a distinct approach by acting as an intelligent gateway. Unlike the previous methods, Ingress isn’t a service type; rather, it serves as a frontend for multiple services, enabling advanced routing scenarios. Ingress offers a plethora of possibilities, with various Ingress controllers available. The default GKE Ingress controller sets up an HTTP(S) Load Balancer, which supports intricate path and subdomain-based routing.```
-
-Takeaways
-- 
-- 
-
-
----
 
 
 #### Docker - Where does docker fit in all this?
