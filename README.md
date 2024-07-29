@@ -43,7 +43,7 @@ The solution will answer the following questions
 ```
 ![alt text](/img/manifesttypes.png)
 
-**The** first category is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
+<u>**The** first category</u> is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
 These manifests change very often as your developers deploy new releases and they are updated in a continuous manner usually in the following ways:
 
     - Updating the container image version on the deployment manifest (maybe 80% of cases)
