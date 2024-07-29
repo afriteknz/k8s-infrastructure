@@ -31,11 +31,14 @@ The following design choices were made after evaluating the trade-offs of differ
 
 The solution will answer the following questions 
 
+```
+
 - 1️⃣ Where to put the Argo CD application manifests
 - 2️⃣ How to work with multiple teams/clusters/applications
 - 3️⃣ How to employ Application Sets for easier management
 - 4️⃣ How to split your GitOps repositories instead of using a monorepo
 
+```
 ![alt text](/img/manifesttypes.png)
 
 - The first category is the standard Kubernetes resources (deployment, service, ingress, config, secrets etc) that are defined by any Kubernetes cluster. These resources have nothing to do with Argo CD and essentially describe how an application runs inside Kubernetes. A developer could use these resources to install an application in a local cluster that doesn’t have Argo CD at all. 
