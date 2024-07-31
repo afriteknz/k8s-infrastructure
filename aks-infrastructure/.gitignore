@@ -4,4 +4,4 @@
 *.tfstate
 *.tfstate.backup
 .terraform.lock.hcl
-aks-infrastructure/private_ssh_key
+aks-infrastructure/*.pkey
