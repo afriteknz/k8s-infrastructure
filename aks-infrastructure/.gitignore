@@ -1,7 +1,0 @@
-.terraform/
-.DS_Store
-./*.DS_Store
-*.tfstate
-*.tfstate.backup
-.terraform.lock.hcl
-aks-infrastructure/*.pkey

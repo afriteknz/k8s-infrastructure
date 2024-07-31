@@ -1,8 +1,0 @@
-
-
-
-### Deploying the AKS Infra
-
-
-
-
