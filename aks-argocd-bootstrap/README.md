@@ -12,7 +12,7 @@ Set the cluster subscription
 
 
 Download cluster credentials
-```az aks get-credentials --resource-group k8s-rg --name cluster-cubem --overwrite-existing```
+```az aks get-credentials --resource-group k8s-rg --name k8s-aks --overwrite-existing```
 
 Test to see if you can connect to the cluster 
 
