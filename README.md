@@ -330,7 +330,6 @@ GitOps Architecture references
 
 ![alt text](/img/ci-cd-gitops-github-actions-aks-push.png)
 
-
 Push-based architecture with GitHub Actions for CI and CD.
 
 Dataflow
