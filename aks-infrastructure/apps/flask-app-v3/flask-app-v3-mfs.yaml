@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: flask-app-v3
+  namespace: python-apps
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: python-apps
+    name: kind
+  project: default
+  source:
+    path: flask-app-v3-mfs
+    repoURL: "git@github.com:afriteknz/k8s-manifests.git"
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
