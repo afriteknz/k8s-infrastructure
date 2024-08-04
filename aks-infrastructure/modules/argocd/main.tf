@@ -4,22 +4,24 @@ resource "helm_release" "nginx_ingress_controller" {
   chart            = "ingress-nginx"
   namespace        = "ingress"
   create_namespace = true
-  timeout          = 600
+  timeout          = "1500"
 
   set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
     value = "/healthz"
   }
 
-    set {
+  set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
-    value = "${var.dns_prefix}"
+    value = var.dns_prefix
   }
 
   set {
     name  = "controller.nodeSelector.kubernetes\\.io/os"
     value = "linux"
   }
+
+
 
 }
 
