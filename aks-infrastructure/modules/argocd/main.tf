@@ -4,25 +4,20 @@ resource "helm_release" "nginx_ingress_controller" {
   chart            = "ingress-nginx"
   namespace        = "ingress"
   create_namespace = true
-  timeout          = "1500"
+  timeout          = "600"
 
   set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
     value = "/healthz"
   }
-
   set {
     name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-dns-label-name"
     value = var.dns_prefix
   }
-
   set {
     name  = "controller.nodeSelector.kubernetes\\.io/os"
     value = "linux"
   }
-
-
-
 }
 
 resource "helm_release" "argocd" {
@@ -37,7 +32,6 @@ resource "helm_release" "argocd" {
     name  = "server.image.tag"
     value = "v2.7.15"
   }
-
   #because I can't pass "- --insecure" directly using set{}
   values = [
     file("${path.module}/chart/argocd/values.yaml")
@@ -73,5 +67,4 @@ resource "helm_release" "rootapp" {
     name  = "ingress.host"
     value = var.dns_name
   }
-
 }

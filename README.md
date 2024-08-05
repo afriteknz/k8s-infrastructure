@@ -27,7 +27,57 @@ Other topics that will be explored.
 ```
 ---
 
+#### What inspired this repo? 
+
+My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that preferred open-source tools running on Linux. This meant that any problem we encountered, as an Engineer, we had to be good in advanced Linux admin i.e filesystem structure, processes, disk partitioning, managing memory and cpu, fixing boot errors etc.  
+
+We were a Java & Php shop, and worked alongside three Java & Python developers who built applications that ran mostly on Apache, Nginx, Tomcat, Glassfish & Mysql among other tools.
+ 
+As a Linux Administrator responsible for deploying the code into dev, uat and production environments, I faced challenges such as, 
+
+```
+- Difficulty in mantaining similar environments across all developers 
+- Slow shipping of applications 
+- Development environments that differed from production environments 
+- Lack of automation, manual code deployments (Jenkins came around 2011)
+```
+
+Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely more on traditional approaches and tools.
+
+- Interwoven bash scripts that were difficult to troubleshoot.
+- Virtualization, which helped create isolated environments to some extent. 
+
+Over the years (from 2010 to the present day), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs).
+
+ In 2022, I made the decision to immigrate from Zimbabwe to New Zealand, where I secured a position as a Senior Cloud Engineer, and I have been in this role since then. 
+
+In my current role, my primary focus is on assisting organizations with,
+
+
+- Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones
+ to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
+- Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure 
+and determining migration pathways using the cloud adoption framework.
+
+
+
+Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure/AWS (Architect/Engineering) environments, made it easy for me to justify my involvement in the project.
+
+Given the complexities of that project with regards to 
+
+
+ - General architecture of the infrastructure [AWS EKS accounts, vpc architecture, secrets management etc]
+ - Containerisation of the application,
+ - Automation of application deployment,
+ - Automation of infrastructure deployment
+
+---
+
 #### Design choices/tradeoffs
+
+Working on this project gave me insights that I never expected. The complexity of kubernetes itself led me to read so much content which made this repo a continous project. 
+
+Upon reading various project which proposed various ways of managing k8s infrastructure and applications, i settled for
 
 *Terraform for kubernetes infra deployment and ArgoCD boostrapping, GitOps for application deployment; clearer separation of concerns*
 
@@ -149,48 +199,7 @@ Add a new item to a map in a helm chart. The rollout happens automatically to al
     - k8s manifests - https://github.com/afriteknz/k8s-manifests
     - Applications repo. (Each application has its own repo and where it makes sense, 2 different microservices can be bundled together)
 ---
-#### What inspired this repo? 
 
-My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that fully embraced open-source solutions. This meant that any problem we encountered had to be solved using open-source tools. We were a Java shop, and I worked alongside three Java & Python developers who built applications that we hosted on either Apache, Nginx, Tomcat or Glassfish.
- 
-As a Linux Administrator responsible for deploying the code into dev, uat and production environments, I faced challenges such as, 
-
-```
-- Difficulty in mantaining similar environments across all developers 
-- Slow shipping of applications 
-- Development environments that differed from production environments 
-- Lack of automation, manual code deployments (Jenkins came around 2011)
-```
-
-Unfortunately, Docker wasn't available at the time (Docker came around 2013), and the best solution we had for addressing these issues was to rely more on traditional approaches and tools.
-
-- Interwoven bash scripts that were difficult to troubleshoot.
-- Virtualization, which helped create isolated environments to some extent. 
-
-Over the years (from 2010 to the present day), I worked in various capacities as a Linux Administrator (2010 - 2012), NOC Engineer(2012 - 2015), Systems Engineer (2015-2017), Team Lead cloud (2017 to 2022) for 3 different Internet Service Providers (ISPs).
-
- In 2022, I made the decision to immigrate from Zimbabwe to New Zealand, where I secured a position as a Senior Cloud Engineer, and I have been in this role since then. 
-
-In my current role, my primary focus is on assisting organizations with,
-
-
-- Cloud Architecture & DevOps Engineering - Deploy platform (management, connectivity) & application (workloads) landing zones
- to Azure & AWS using Terraform, Azure DevOps Pipelines & Github actions (60% of my work)
-- Consultancy - Assisting customer partnership leads with presales support by assessing clients' IT infrastructure 
-and determining migration pathways using the cloud adoption framework.
-
-
-
-Upon joining my current employer, I volunteered to be part of an AWS EKS project where the client needed a multi-account/cluster solution. My strong background in Linux administration (RHCE), as well as my experience with Azure/AWS (Architect/Engineering) environments, made it easy for me to justify my involvement in the project.
-
-Given the complexities of that project with regards to 
-
-
- - General architecture of the infrastructure [AWS EKS accounts, vpc architecture, secrets management etc]
- - Containerisation of the application,
- - Automation of application deployment,
- - Automation of infrastructure deployment
----
 
 #### Bootstrapping ArgoCD with terraform
 
