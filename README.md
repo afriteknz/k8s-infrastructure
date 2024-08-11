@@ -1,6 +1,6 @@
 #### Deployment of Kubernetes (EKS/AKS) Cluster with Terraform, boostrapping ArgoCD with app of apps.
 
-*Under maintenance! documentation clean up and streamlining of the deployment process*
+*This repo will be used for continous learning and improvement of kubernetes and associated tools!, mostly, documentation clean up and streamlining the infrastructure and application code deployment process*
 
 With time and experience, we all realise that,
 ```
