@@ -2,9 +2,7 @@
 
 *I am using this repo for continuous learning of Kubernetes components, deployment practices & associated tools.*
 
-Why add complexity running our apps on kubernetes? should we use VMs, Serverless, baremetal or Containers. The answer to this question doesnt have a simple answer. Depending on various factors,  
-
-After riding the kubernetes hype train, in the end, we all realise that,
+Why introduce complexity by running our apps on Kubernetes? Should we use VMs, serverless, bare metal, or containers instead? There’s no one-size-fits-all answer to this question; the right choice depends on various factors, after riding the kubernetes hype train, in the end, we all realise that,
 
 ```
 - Not everything has to be on Kubernetes 
