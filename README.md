@@ -1,8 +1,14 @@
 #### Deployment of Kubernetes (EKS/AKS) Cluster with Terraform, boostrapping ArgoCD with app of apps.
 
-*This repo will be used for continous learning and improvement of kubernetes and associated tools!, mostly, documentation clean up and streamlining the infrastructure and application code deployment process*
+*This repo will be used for continous learning and improvement of kubernetes and associated tools!, documentation clean up and streamlining the infrastructure and application code deployment process*
 
-With time and experience, we all realise that,
+Most organisations have,
+
+- Implemented an architecture that doesnt fit with their organisation team structure - configured it in a non scalable way, making it difficult to manage 
+- Wrong tool - Instead of either running the app on plain old vm or cloud native tools such as Azure app services, the manager decided to use kubernetes.
+
+After riding the kubernetes hype train, in the end, we all realise that,
+
 ```
 - Not everything has to be on Kubernetes 
 - Not everything has to be on Containers
@@ -13,23 +19,17 @@ With time and experience, we all realise that,
 ```
 ---
 
-When Docker was realeased around 2013 and Kuberntes the following year, 2014, the narrative was that containers/kubernetes/Docker Swarm will replace VMs & Hypervisors like VMware, HyperV and KVM. This was just hype. The Container/Kubernetes combo came in to solve developer challenges and not as a hosting solution for every app. I will not delve much into this to avoid being too opinionated.
+#### Some background story.
 
-The architecture of you application should determine whether you need kubernetes or not
-
-- Implemented an architecture that doesnt fit with their organisation team structure - configured it in a non scalable way, making it difficult to manage 
-- Wrong tool - Instead of either running the app on plain old vm or cloud native tools such as Azure app services, the manager decided to use kubernetes.
-
-Anyway, 
-
-My journey into container orchestrators has never been smooth. I never really got a chance to work with a full blown kubernetes deployment until recently when I worked on an EKS project. I had a great deal of experience working with Docker containers which made it easier as a starting point to my Kubernetes Journey. What made it even easier for me is that, cloud managed kubernetes clusters made it easier for engineers looking at testing out its functionality. With a free subscription, it takes less than 3 mins to deploy a free cluster. That on its own takes half the job away making it easier for both Infrastructure and Software engineers to concetrante on what they know best. 
+When Docker was released around 2013 and Kubernetes the following year in 2014, there was a narrative that containers, Kubernetes, and Docker Swarm would replace VMs and hypervisors like VMware, Hyper-V, and KVM. This was largely hype. The container/Kubernetes combination was designed to address developer challenges rather than serve as a universal hosting solution for all applications. I’ll refrain from going into too much detail to avoid being overly opinionated.
 
 Before deciding to use kubernetes ask yourself this 
 
-- What is your main reason for choosing it  - make the developer experience smooth
+- What is your main reason for choosing it  - to make the developer experience smooth ?
 - Do you have the right infrastructure team and application teams to manage the complexity.
-- Which tools are you going to use to manage infrastructure and application deployment
-- Are you going to adopt the provided aks managed kuberntes add ons outside of kubernetes using (Helm charts/ rgoCD) or Terraform
+- Which tools are you going to use to manage infrastructure and application deployment.
+- If using EKS or AKS, are you going to adopt the provided add ons provided through cloud providers outside of kubernetes using (Helm charts/ rgoCD) or Terraform.
+
 
 ---
 
@@ -60,7 +60,9 @@ Other topics that will be explored.
 
 #### What inspired this repo? 
 
-My journey into the world of containers and container orchestrators has been quite eventful. I began my career in IT back in 2010, working for an organization that preferred open-source tools running on Linux. This meant that any problem we encountered, as an Engineer, we had to be good in advanced Linux admin i.e filesystem structure, processes, disk partitioning, managing memory and cpu, fixing boot errors etc.  
+My journey into container orchestrators has never been smooth. I never really got a chance to work with a full blown kubernetes deployment until recently when I worked on an EKS project. I had a great deal of experience working with Docker containers which made it easier as a starting point to my Kubernetes Journey. What made it even easier for me is that, cloud managed kubernetes clusters made it easier for engineers looking at testing out its functionality. With a free subscription, it takes less than 3 mins to deploy a free cluster. That on its own takes half the job away making it easier for both Infrastructure and Software engineers to concetrante on what they know best. 
+
+I began my career in IT back in 2010, working for an organization that preferred open-source tools running on Linux. This meant that any problem we encountered, as an Engineer, we had to be good in advanced Linux admin i.e filesystem structure, processes, disk partitioning, managing memory and cpu, fixing boot errors etc.  
 
 We were a Java & Php shop, and worked alongside three Java & Python developers who built applications that ran mostly on Apache, Nginx, Tomcat, Glassfish & Mysql among other tools.
  
