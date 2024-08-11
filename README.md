@@ -2,6 +2,37 @@
 
 *Under maintenance! documentation clean up and streamlining of the deployment process*
 
+With time and experience, we all realise that,
+```
+- Not everything has to be on Kubernetes 
+- Not everything has to be on Containers
+- Not everything has to be on Serverless
+- Not everything has to be on VMs
+- Not everything has to be on bare metal
+
+```
+---
+
+When Docker was realeased around 2013 and Kuberntes the following year, 2014, the narrative was that containers/kubernetes/Docker Swarm will replace VMs & Hypervisors like VMware, HyperV and KVM. This was just hype. The Container/Kubernetes combo came in to solve developer challenges and not as a hosting solution for every app. I will not delve much into this to avoid being too opinionated.
+
+The architecture of you application should determine whether you need kubernetes or not
+
+- Implemented an architecture that doesnt fit with their organisation team structure - configured it in a non scalable way, making it difficult to manage 
+- Wrong tool - Instead of either running the app on plain old vm or cloud native tools such as Azure app services, the manager decided to use kubernetes.
+
+Anyway, 
+
+My journey into container orchestrators has never been smooth. I never really got a chance to work with a full blown kubernetes deployment until recently when I worked on an EKS project. I had a great deal of experience working with Docker containers which made it easier as a starting point to my Kubernetes Journey. What made it even easier for me is that, cloud managed kubernetes clusters made it easier for engineers looking at testing out its functionality. With a free subscription, it takes less than 3 mins to deploy a free cluster. That on its own takes half the job away making it easier for both Infrastructure and Software engineers to concetrante on what they know best. 
+
+Before deciding to use kubernetes ask yourself this 
+
+- What is your main reason for choosing it  - make the developer experience smooth
+- Do you have the right infrastructure team and application teams to manage the complexity.
+- Which tools are you going to use to manage infrastructure and application deployment
+- Are you going to adopt the provided aks managed kuberntes add ons outside of kubernetes using (Helm charts/ rgoCD) or Terraform
+
+---
+
 This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
 
 While the core concepts are universally applicable, there are slight variations in implementations across different Kubernetes environments.
