@@ -1,11 +1,8 @@
 #### Deployment of Kubernetes (EKS/AKS) Cluster with Terraform, boostrapping ArgoCD with app of apps.
 
-*This repo will be used for continous learning and improvement of kubernetes and associated tools!, documentation clean up and streamlining the infrastructure and application code deployment process*
+*I am using this repo for continuous learning of Kubernetes components, deployment practices & associated tools.*
 
-Most organisations have,
-
-- Implemented an architecture that doesnt fit with their organisation team structure - configured it in a non scalable way, making it difficult to manage 
-- Wrong tool - Instead of either running the app on plain old vm or cloud native tools such as Azure app services, the manager decided to use kubernetes.
+Why add complexity running our apps on kubernetes? should we use VMs, Serverless, baremetal or Containers. The answer to this question doesnt have a simple answer. Depending on various factors,  
 
 After riding the kubernetes hype train, in the end, we all realise that,
 
@@ -17,20 +14,23 @@ After riding the kubernetes hype train, in the end, we all realise that,
 - Not everything has to be on bare metal
 
 ```
+
 ---
 
 #### Some background story.
 
 When Docker was released around 2013 and Kubernetes the following year in 2014, there was a narrative that containers, Kubernetes, and Docker Swarm would replace VMs and hypervisors like VMware, Hyper-V, and KVM. This was largely hype. The container/Kubernetes combination was designed to address developer challenges rather than serve as a universal hosting solution for all applications. I’ll refrain from going into too much detail to avoid being overly opinionated.
 
-Before deciding to use kubernetes ask yourself this 
+When considering whether to use Kubernetes, ask yourself the following questions:
 
-- What is your main reason for choosing it  - to make the developer experience smooth ?
-- Do you have the right infrastructure team and application teams to manage the complexity.
-- Which tools are you going to use to manage infrastructure and application deployment.
-- If using EKS or AKS, are you going to adopt the provided add ons provided through cloud providers outside of kubernetes using (Helm charts/ rgoCD) or Terraform.
+When deciding whether to use Kubernetes, consider the following questions:
 
-
+- **Purpose**: Is your main reason for choosing Kubernetes to enhance the developer experience?
+- **Team Readiness**: Do you have the right infrastructure and application teams to handle the added complexity?
+- **Management Tools**: What tools will you use for managing infrastructure and deploying applications?
+- **Cloud Provider Add-ons**: If using EKS or AKS, will you leverage the add-ons provided by cloud providers, or will you use tools like Helm charts, ArgoCD, or Terraform?
+- **Application Fit**: Does your application truly require a microservices architecture, and does this approach align with your organizational structure? Keep in mind that improper configuration can lead to scalability issues and increased management complexity.
+- **Suitability**: Is Kubernetes the right tool for your needs?
 ---
 
 This repository will explore Kubernetes components and concepts, as well as CI/CD approaches (both pull and push-based) for deploying Kubernetes resources and microservices applications. The demonstrations will use managed Kubernetes services, Azure Kubernetes Service (AKS) and Amazon Elastic Kubernetes Service (Amazon EKS).
